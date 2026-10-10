@@ -6,6 +6,7 @@ import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ContactForm from "@/components/ContactForm";
+import FAQ from "@/components/FAQ";
 import GoogleBadge from "@/components/GoogleBadge";
 import VideoCard from "@/components/VideoCard";
 import { useLang } from "@/i18n/LanguageContext";
@@ -371,6 +372,9 @@ const Home = () => {
           })}
         </div>
       </section>
+
+      {/* FAQ */}
+      <FAQ />
 
       {/* CONTACT CTA */}
       <section className="relative overflow-hidden py-20">

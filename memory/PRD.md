@@ -36,6 +36,8 @@ Rebuild https://kashivadhyar.com/ (same content + navbar) in React with a dark l
 - Structured data: LocalBusiness JSON-LD now carries the real aggregateRating (4.9/60), openingHours (24h per Google profile), url, sameAs
 - Contact hours corrected to match Google Business profile: "Open 24 hours" (EN + TA)
 - Mobile responsive pass: fixed horizontal overflow (overflow-hidden on glow sections), single-line nav in both languages
+- FAQ section on Home (src/components/FAQ.jsx): 6 bilingual Q&As sourced from real Google "People also ask" queries (asthi visarjan cost/place/day, Tamil explanation, booking, stay+transport); matching FAQPage JSON-LD in index.html (English, mirrors visible content)
+- Gallery lightbox: full-screen viewer with prev/next, keyboard (Esc/arrows), captions, counter
 
 ## Verified
 - curl: /api/health ok; POST /api/contact persists enquiry
