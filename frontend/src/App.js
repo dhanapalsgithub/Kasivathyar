@@ -3,6 +3,7 @@ import "@/App.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -46,26 +47,28 @@ function App() {
 
   return (
     <div className="App grain">
-      <BrowserRouter>
-        <ScrollToTop />
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about-us" element={<About />} />
-            <Route path="/poojas" element={<Poojas />} />
-            <Route path="/packages" element={<Packages />} />
-            <Route path="/packages/:slug" element={<PackageDetail />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/contact-us" element={<Contact />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </main>
-        <Footer />
-        <WhatsAppFloat />
-        <Toaster theme="dark" richColors position="top-center" />
-      </BrowserRouter>
+      <LanguageProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about-us" element={<About />} />
+              <Route path="/poojas" element={<Poojas />} />
+              <Route path="/packages" element={<Packages />} />
+              <Route path="/packages/:slug" element={<PackageDetail />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/contact-us" element={<Contact />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </main>
+          <Footer />
+          <WhatsAppFloat />
+          <Toaster theme="dark" richColors position="top-center" />
+        </BrowserRouter>
+      </LanguageProvider>
     </div>
   );
 }

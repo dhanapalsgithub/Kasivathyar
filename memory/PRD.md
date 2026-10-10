@@ -27,6 +27,9 @@ Rebuild https://kashivadhyar.com/ (same content + navbar) in React with a dark l
 - Backend: GET /api/health, POST /api/contact (Mongo `enquiries` collection, BaseDocument pattern)
 - SEO pack: sitemap.xml, robots.txt, GSC placeholder meta (`PASTE_YOUR_GOOGLE_SEARCH_CONSOLE_CODE_HERE`), OG tags, JSON-LD
 - Original SVG diya logo mark used as favicon
+- Tamil/English toggle (navbar pill, persists in localStorage; full Tamil translations for nav, hero, rituals, packages, itineraries, events, testimonials, forms; Catamaran + Noto Serif Tamil fonts via `lang-ta` html class)
+- Muhurat calendar on Contact page (Amavasya/Pournami/festival highlights from src/data/muhurat.js, upcoming list, picking a day fills the enquiry form date + scrolls to it)
+- Client's real photos integrated (public/images/): vadhyars-boat-tarpan.jpg (Pind Daan + About), boat-kalash-pooja.jpg (Shradh), homam-ritual.jpg (Special Poojas); all 3 also in Gallery
 
 ## Verified
 - curl: /api/health ok; POST /api/contact persists enquiry

@@ -25,7 +25,7 @@ export const LogoMark = ({ className = "h-10 w-10" }) => (
 export const LogoFull = () => (
   <span className="flex items-center gap-3" data-testid="site-logo">
     <LogoMark />
-    <span className="leading-tight">
+    <span className="leading-tight whitespace-nowrap">
       <span className="block font-display text-xl font-bold tracking-wide text-amber-100">
         Kashi <span className="gold-text">Vadhyar</span>
       </span>

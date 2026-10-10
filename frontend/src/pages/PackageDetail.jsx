@@ -4,16 +4,26 @@ import { ArrowLeft, CheckCircle2, MessageCircle } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import { PACKAGES, CONTACT } from "@/data/content";
+import { useLang } from "@/i18n/LanguageContext";
+import { PACKAGES_TA, INCLUDES_TA } from "@/i18n/translations";
+
+const INCLUDES_EN = ["Comfortable stay near the ghats", "Private transport throughout", "Hereditary Tamil Vadhyar at every kshetra", "Ritual samagri & arrangements", "Darshan assistance at temples"];
 
 const PackageDetail = () => {
   const { slug } = useParams();
-  const pkg = PACKAGES.find((p) => p.slug === slug);
-  if (!pkg) return <Navigate to="/packages" replace />;
+  const { lang, t } = useLang();
+  const base = PACKAGES.find((p) => p.slug === slug);
+  if (!base) return <Navigate to="/packages" replace />;
+
+  const pkg = lang === "ta"
+    ? { ...base, ...PACKAGES_TA[slug], itinerary: base.itinerary.map((s, i) => ({ ...s, ...PACKAGES_TA[slug].itinerary[i] })) }
+    : base;
+  const includes = lang === "ta" ? INCLUDES_TA : INCLUDES_EN;
 
   return (
     <div data-testid="package-detail-page">
       <section className="relative flex min-h-[62vh] items-end overflow-hidden pb-14 pt-36">
-        <img src={pkg.img} alt={pkg.title} className="absolute inset-0 h-full w-full object-cover" />
+        <img src={base.img} alt={pkg.title} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E] via-[#0A0B0E]/60 to-[#0A0B0E]/35" />
         <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6">
           <motion.span
@@ -30,6 +40,7 @@ const PackageDetail = () => {
               initial={{ y: "110%" }}
               animate={{ y: 0 }}
               transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              key={lang}
             >
               {pkg.title}
             </motion.h1>
@@ -50,15 +61,15 @@ const PackageDetail = () => {
           className="group inline-flex items-center gap-2 text-sm font-semibold text-amber-300 transition-colors hover:text-amber-200"
         >
           <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
-          All packages
+          {t("back_packages")}
         </Link>
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_360px]">
           <div>
-            <h2 className="font-display text-3xl font-bold text-amber-100">Day-by-Day Itinerary</h2>
+            <h2 className="font-display text-3xl font-bold text-amber-100">{t("itinerary_h")}</h2>
             <div className="mt-8 space-y-0">
               {pkg.itinerary.map((step, i) => (
-                <Reveal key={step.day} delay={i * 0.04}>
+                <Reveal key={i} delay={i * 0.04}>
                   <div data-testid={`itinerary-${i}`} className="relative flex gap-6 pb-8">
                     {i < pkg.itinerary.length - 1 && (
                       <span className="absolute left-[21px] top-12 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-amber-500/50 to-amber-500/5" aria-hidden="true" />
@@ -67,7 +78,7 @@ const PackageDetail = () => {
                       {i + 1}
                     </span>
                     <div className="glass flex-1 rounded-2xl p-5 transition-colors duration-300 hover:border-amber-400/40">
-                      <p className="text-[11px] font-bold uppercase tracking-widest text-amber-500">{step.day}</p>
+                      <p className="text-[11px] font-bold uppercase tracking-widest text-amber-500">{t("day_prefix")} {i + 1}</p>
                       <h3 className="mt-1 font-display text-xl font-semibold text-amber-100">{step.place}</h3>
                       <p className="mt-1.5 text-sm leading-relaxed text-stone-400">{step.detail}</p>
                     </div>
@@ -80,9 +91,9 @@ const PackageDetail = () => {
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <Reveal>
               <div className="glass rounded-3xl p-7">
-                <h3 className="font-display text-2xl font-bold text-amber-100">What's Included</h3>
+                <h3 className="font-display text-2xl font-bold text-amber-100">{t("includes_h")}</h3>
                 <ul className="mt-5 space-y-3">
-                  {["Comfortable stay near the ghats", "Private transport throughout", "Hereditary Tamil Vadhyar at every kshetra", "Ritual samagri & arrangements", "Darshan assistance at temples"].map((inc) => (
+                  {includes.map((inc) => (
                     <li key={inc} className="flex items-start gap-2.5 text-sm text-stone-300">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" /> {inc}
                     </li>
@@ -90,7 +101,9 @@ const PackageDetail = () => {
                 </ul>
                 <a
                   href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
-                    `Namaste Kashi Vadhyar, I would like to book the ${pkg.title} (${pkg.tagline}). Please share availability and details.`,
+                    lang === "ta"
+                      ? `நமஸ்தே காசி வாத்தியாரே, நான் ${pkg.title} (${pkg.tagline}) முன்பதிவு செய்ய விரும்புகிறேன். விவரங்களைப் பகிருங்கள்.`
+                      : `Namaste Kashi Vadhyar, I would like to book the ${base.title} (${base.tagline}). Please share availability and details.`,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -98,10 +111,10 @@ const PackageDetail = () => {
                   className="mt-7 flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-4 text-sm font-bold text-stone-950 shadow-[0_8px_28px_rgba(37,211,102,0.35)] transition-transform duration-300 hover:scale-[1.03]"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  Book This Package on WhatsApp
+                  {t("book_pkg_wa")}
                 </a>
                 <p className="mt-4 text-center text-xs text-stone-500">
-                  Or call us: <a href={CONTACT.phone1Href} className="text-amber-300 hover:underline">{CONTACT.phone1}</a>
+                  {t("or_call")} <a href={CONTACT.phone1Href} className="text-amber-300 hover:underline">{CONTACT.phone1}</a>
                 </p>
               </div>
             </Reveal>

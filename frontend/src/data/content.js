@@ -40,13 +40,13 @@ export const RITUALS = [
     slug: "pind-daan",
     title: "Pind Daan",
     desc: "Honor your ancestors with our comprehensive Pind Daan service, performed at the sacred ghats of Kashi, Gaya and Prayag as per Vedic tradition.",
-    img: "https://images.unsplash.com/photo-1612779774202-68e4305b849b?q=85&w=800",
+    img: "/images/vadhyars-boat-tarpan.jpg",
   },
   {
     slug: "shradh",
     title: "Shradh",
     desc: "Commemorate your ancestors with the sacred Shradh rituals, conducted with full Vedic vidhi by our hereditary Tamil Vadhyars.",
-    img: "https://images.unsplash.com/photo-1703173342540-fba340054867?q=85&w=800",
+    img: "/images/boat-kalash-pooja.jpg",
   },
   {
     slug: "pitra-dosh-nivaran",
@@ -70,7 +70,7 @@ export const RITUALS = [
     slug: "special-poojas",
     title: "Special Poojas",
     desc: "Rudrabhishek, Navagraha Shanti, Mangal Dosh Nivaran and more — poojas arranged across Kashi, Gaya and Prayag.",
-    img: "https://images.unsplash.com/photo-1614164974666-057a7c713ba6?q=85&w=800",
+    img: "/images/homam-ritual.jpg",
   },
 ];
 
@@ -195,6 +195,9 @@ export const GALLERY = [
   { img: "https://images.unsplash.com/photo-1612779774202-68e4305b849b?q=85&w=900", cat: "Rituals", cap: "Offerings prepared for Pind Daan" },
   { img: "https://images.unsplash.com/photo-1585484172903-8d21335b9373?q=85&w=900", cat: "Rituals", cap: "Sacred fire and vedic chant" },
   { img: "https://images.unsplash.com/photo-1614164974666-057a7c713ba6?q=85&w=900", cat: "Rituals", cap: "The Vadhyar at prayer" },
+  { img: "/images/vadhyars-boat-tarpan.jpg", cat: "Rituals", cap: "Tarpan ritual on a Ganga boat" },
+  { img: "/images/boat-kalash-pooja.jpg", cat: "Rituals", cap: "Kalash pooja on the holy river" },
+  { img: "/images/homam-ritual.jpg", cat: "Rituals", cap: "Homam by our hereditary Vadhyars" },
 ];
 
 export const VIDEOS = [
