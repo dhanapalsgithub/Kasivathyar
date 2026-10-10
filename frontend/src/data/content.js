@@ -8,6 +8,10 @@ export const CONTACT = {
   email: "info@kashivadhyar.com",
   address: "B6/62 Pitambarpura, Harishchandra Road, Varanasi 221001",
   facebook: "https://www.facebook.com/share/BEieuFnYTZ33uUmA/?mibextid=qi2Omg",
+  googleReviews: "https://search.google.com/local/reviews?placeid=ChIJbeLb0SkxjjkRJ5nPNrQVhz0",
+  googleWriteReview: "https://admin.trustindex.io/api/googleWriteReview?place-id=ChIJbeLb0SkxjjkRJ5nPNrQVhz0",
+  googleRating: "4.9",
+  googleReviewCount: "60",
 };
 
 export const SHLOKA =

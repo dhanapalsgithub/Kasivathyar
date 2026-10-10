@@ -32,6 +32,9 @@ Rebuild https://kashivadhyar.com/ (same content + navbar) in React with a dark l
 - Client's real photos integrated (public/images/): vadhyars-boat-tarpan.jpg (Pind Daan + About), boat-kalash-pooja.jpg (Shradh), homam-ritual.jpg (Special Poojas); all 3 also in Gallery; kashi-yatra-group.jpg family photo on About page ("The Families We Serve")
 - Festival auto-dates: src/data/panchangam.js dataset (2026–2030) drives Events page + Home preview + muhurat calendar; each festival auto-rolls to its next occurrence (verified: past 2026 dates rolled to 2027)
 - Tamil SEO: per-route bilingual meta via src/components/RouteSeo.jsx (title/description/canonical/og swap en↔ta on toggle); static head has canonical, robots meta, full OG (owned og:image /images/vadhyars-boat-tarpan.jpg 1600x748), Twitter card, og:locale en_IN + ta_IN alternate, Tamil keywords, noscript content fallback; robots.txt with AI-crawler group + Disallow /api/; llms.txt
+- Google Reviews showcase (src/components/GoogleBadge.jsx) on Home testimonials section: real verified aggregate from the business's Google profile — 4.9★, 60 reviews (place id ChIJbeLb0SkxjjkRJ5nPNrQVhz0), "Read all reviews" → Google reviews page, "Review us on Google" → Trustindex write-review link; bilingual labels
+- Structured data: LocalBusiness JSON-LD now carries the real aggregateRating (4.9/60), openingHours (24h per Google profile), url, sameAs
+- Contact hours corrected to match Google Business profile: "Open 24 hours" (EN + TA)
 - Mobile responsive pass: fixed horizontal overflow (overflow-hidden on glow sections), single-line nav in both languages
 
 ## Verified

@@ -6,6 +6,7 @@ import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ContactForm from "@/components/ContactForm";
+import GoogleBadge from "@/components/GoogleBadge";
 import VideoCard from "@/components/VideoCard";
 import { useLang } from "@/i18n/LanguageContext";
 import { RITUALS_TA, PACKAGES_TA, TESTIMONIALS_TA, SERVICES_TA, VIDEO_TITLES_TA } from "@/i18n/translations";
@@ -310,6 +311,7 @@ const Home = () => {
           eyebrow={t("testi_eyebrow")}
           title={<>{t("testi_title1")} <span className="gold-text italic">{t("testi_title2")}</span></>}
         />
+        <GoogleBadge />
         <div className="grid gap-6 md:grid-cols-3">
           {TESTIMONIALS.map((tm, i) => {
             const tt = lang === "ta" ? { ...tm, ...TESTIMONIALS_TA[i] } : tm;
