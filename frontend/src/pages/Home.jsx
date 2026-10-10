@@ -10,7 +10,7 @@ import FAQ from "@/components/FAQ";
 import GoogleBadge from "@/components/GoogleBadge";
 import VideoCard from "@/components/VideoCard";
 import { useLang } from "@/i18n/LanguageContext";
-import { RITUALS_TA, PACKAGES_TA, TESTIMONIALS_TA, SERVICES_TA, VIDEO_TITLES_TA } from "@/i18n/translations";
+import { RITUALS_TA, RITUALS_HI, PACKAGES_TA, PACKAGES_HI, TESTIMONIALS_TA, TESTIMONIALS_HI, SERVICES_TA, SERVICES_HI, VIDEO_TITLES_TA, VIDEO_TITLES_HI, pickLang } from "@/i18n/translations";
 import { getUpcomingFestivals } from "@/data/panchangam";
 import { HERO_VIDEO, HERO_POSTER, STATS, RITUALS, PACKAGES, TESTIMONIALS, VIDEOS, ABOUT_SERVICES, CONTACT } from "@/data/content";
 
@@ -28,7 +28,7 @@ const Home = () => {
     { text: t("hero_l3"), accent: true },
   ];
   const statLabels = [t("stat1_label"), t("stat2_label"), t("stat3_label"), t("stat4_label")];
-  const services = ABOUT_SERVICES.map((s, i) => (lang === "ta" ? SERVICES_TA[i] : s));
+  const services = ABOUT_SERVICES.map((s, i) => pickLang(lang, s, SERVICES_TA[i], SERVICES_HI[i]));
   const events = getUpcomingFestivals().slice(0, 3);
 
   return (
@@ -206,7 +206,7 @@ const Home = () => {
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {RITUALS.map((r, i) => {
-              const rt = lang === "ta" ? RITUALS_TA[r.slug] : r;
+              const rt = pickLang(lang, r, RITUALS_TA[r.slug], RITUALS_HI[r.slug]);
               return (
                 <Reveal key={r.slug} delay={(i % 3) * 0.1}>
                   <Link
@@ -247,7 +247,7 @@ const Home = () => {
         />
         <div className="grid gap-6 lg:grid-cols-3">
           {PACKAGES.map((p, i) => {
-            const pt = lang === "ta" ? { ...p, ...PACKAGES_TA[p.slug] } : p;
+            const pt = lang === "en" ? p : { ...p, ...pickLang(lang, {}, PACKAGES_TA[p.slug], PACKAGES_HI[p.slug]) };
             return (
               <Reveal key={p.slug} delay={i * 0.1}>
                 <div
@@ -300,7 +300,7 @@ const Home = () => {
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {VIDEOS.map((v, i) => (
-              <VideoCard key={v.src} video={lang === "ta" ? { ...v, title: VIDEO_TITLES_TA[i] } : v} index={i} />
+              <VideoCard key={v.src} video={lang === "en" ? v : { ...v, title: pickLang(lang, v.title, VIDEO_TITLES_TA[i], VIDEO_TITLES_HI[i]) }} index={i} />
             ))}
           </div>
         </div>
@@ -315,7 +315,7 @@ const Home = () => {
         <GoogleBadge />
         <div className="grid gap-6 md:grid-cols-3">
           {TESTIMONIALS.map((tm, i) => {
-            const tt = lang === "ta" ? { ...tm, ...TESTIMONIALS_TA[i] } : tm;
+            const tt = lang === "en" ? tm : { ...tm, ...pickLang(lang, {}, TESTIMONIALS_TA[i], TESTIMONIALS_HI[i]) };
             return (
               <Reveal key={tm.name} delay={i * 0.1}>
                 <figure data-testid={`testimonial-${i}`} className="glass flex h-full flex-col rounded-3xl p-7 transition-transform duration-500 hover:-translate-y-2">
@@ -345,9 +345,9 @@ const Home = () => {
         />
         <div className="grid gap-6 md:grid-cols-3">
           {events.map((ev, i) => {
-            const title = lang === "ta" ? ev.titleTa : ev.titleEn;
-            const date = lang === "ta" ? ev.dateTa : ev.dateEn;
-            const desc = lang === "ta" ? ev.descTa : ev.descEn;
+            const title = pickLang(lang, ev.titleEn, ev.titleTa, ev.titleHi);
+            const date = pickLang(lang, ev.dateEn, ev.dateTa, ev.dateHi);
+            const desc = pickLang(lang, ev.descEn, ev.descTa, ev.descHi);
             return (
               <Reveal key={ev.id} delay={i * 0.1}>
                 <Link

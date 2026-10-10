@@ -8,7 +8,7 @@ import Marquee from "@/components/Marquee";
 import VideoCard from "@/components/VideoCard";
 import { GALLERY, VIDEOS } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
-import { FILTERS_TA, GALLERY_TA, VIDEO_TITLES_TA } from "@/i18n/translations";
+import { FILTERS_TA, FILTERS_HI, GALLERY_TA, GALLERY_HI, VIDEO_TITLES_TA, VIDEO_TITLES_HI, pickLang } from "@/i18n/translations";
 
 const FILTERS = ["All", "Ghats", "Aarti", "Rituals", "Temples"];
 
@@ -18,8 +18,9 @@ const Gallery = () => {
   const { lang, t } = useLang();
   const items = filter === "All" ? GALLERY : GALLERY.filter((g) => g.cat === filter);
 
+  const filterLabel = useCallback((f) => pickLang(lang, f, FILTERS_TA[f], FILTERS_HI[f]), [lang]);
   const caption = useCallback(
-    (g) => (lang === "ta" ? GALLERY_TA[GALLERY.indexOf(g)]?.cap ?? g.cap : g.cap),
+    (g) => pickLang(lang, g.cap, GALLERY_TA[GALLERY.indexOf(g)]?.cap, GALLERY_HI[GALLERY.indexOf(g)]?.cap),
     [lang],
   );
 
@@ -67,7 +68,7 @@ const Gallery = () => {
                   : "glass text-stone-300 hover:border-amber-400/40 hover:text-amber-300"
               }`}
             >
-              {lang === "ta" ? FILTERS_TA[f] : f}
+              {filterLabel(f)}
             </button>
           ))}
         </Reveal>
@@ -76,7 +77,6 @@ const Gallery = () => {
           <AnimatePresence mode="popLayout">
             {items.map((g, i) => {
               const cap = caption(g);
-              const catLabel = lang === "ta" ? FILTERS_TA[g.cat] : g.cat;
               return (
                 <motion.figure
                   layout
@@ -97,7 +97,7 @@ const Gallery = () => {
                   />
                   <figcaption className="absolute inset-x-0 bottom-0 translate-y-3 bg-gradient-to-t from-black/90 to-transparent p-4 pt-10 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                     <p className="text-sm font-semibold text-amber-100">{cap}</p>
-                    <p className="text-[10px] uppercase tracking-widest text-amber-400">{catLabel}</p>
+                    <p className="text-[10px] uppercase tracking-widest text-amber-400">{filterLabel(g.cat)}</p>
                   </figcaption>
                 </motion.figure>
               );
@@ -160,7 +160,7 @@ const Gallery = () => {
               <figcaption className="mt-4 text-center">
                 <span className="text-sm font-semibold text-amber-100">{caption(items[lightbox])}</span>
                 <span className="ml-3 text-xs uppercase tracking-widest text-amber-400">
-                  {lang === "ta" ? FILTERS_TA[items[lightbox].cat] : items[lightbox].cat} · {lightbox + 1}/{items.length}
+                  {filterLabel(items[lightbox].cat)} · {lightbox + 1}/{items.length}
                 </span>
               </figcaption>
             </motion.figure>
@@ -176,7 +176,7 @@ const Gallery = () => {
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {VIDEOS.map((v, i) => (
-            <VideoCard key={v.src} video={lang === "ta" ? { ...v, title: VIDEO_TITLES_TA[i] } : v} index={i} />
+            <VideoCard key={v.src} video={lang === "en" ? v : { ...v, title: pickLang(lang, v.title, VIDEO_TITLES_TA[i], VIDEO_TITLES_HI[i]) }} index={i} />
           ))}
         </div>
       </section>

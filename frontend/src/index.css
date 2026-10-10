@@ -159,6 +159,16 @@ html.lenis body {
 .lang-ta .font-display {
     font-family: "Noto Serif Tamil", "Cormorant Garamond", Georgia, serif;
 }
+.lang-hi body,
+.lang-hi input,
+.lang-hi select,
+.lang-hi textarea,
+.lang-hi button {
+    font-family: "Mukta", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+.lang-hi .font-display {
+    font-family: "Rozha One", "Cormorant Garamond", Georgia, serif;
+}
 
 .muh-dot {
     display: inline-block;

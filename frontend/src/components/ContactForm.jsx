@@ -4,12 +4,18 @@ import { toast } from "sonner";
 import { Send } from "lucide-react";
 import { CONTACT, RITUALS, PACKAGES } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
-import { RITUALS_TA, PACKAGES_TA } from "@/i18n/translations";
+import { RITUALS_TA, RITUALS_HI, PACKAGES_TA, PACKAGES_HI, pickLang } from "@/i18n/translations";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const inputCls =
   "w-full rounded-xl border border-amber-500/20 bg-white/5 px-4 py-3 text-sm text-stone-100 placeholder:text-stone-500 outline-none transition-colors duration-300 focus:border-amber-400/70 focus:bg-white/[0.07]";
+
+const MSG_LABELS = {
+  en: { greet: "Namaste Kashi Vadhyar,", name: "Name", phone: "Phone", service: "Service", date: "Preferred date", msg: "Message", close: "I would like to book / know more." },
+  ta: { greet: "நமஸ்தே காசி வாத்தியாரே,", name: "பெயர்", phone: "தொலைபேசி", service: "சேவை", date: "விருப்பமான தேதி", msg: "செய்தி", close: "நான் முன்பதிவு செய்ய / மேலும் அறிய விரும்புகிறேன்." },
+  hi: { greet: "नमस्ते काशी वाध्यार जी,", name: "नाम", phone: "फ़ोन", service: "सेवा", date: "पसंदीदा तारीख़", msg: "संदेश", close: "मैं बुक करना / और जानना चाहता/चाहती हूँ।" },
+};
 
 const ContactForm = ({ defaultService = "", externalDate = "" }) => {
   const { lang, t } = useLang();
@@ -29,9 +35,7 @@ const ContactForm = ({ defaultService = "", externalDate = "" }) => {
       return;
     }
     setSending(true);
-    const L = lang === "ta"
-      ? { greet: "நமஸ்தே காசி வாத்தியாரே,", name: "பெயர்", phone: "தொலைபேசி", service: "சேவை", date: "விருப்பமான தேதி", msg: "செய்தி", close: "நான் முன்பதிவு செய்ய / மேலும் அறிய விரும்புகிறேன்." }
-      : { greet: "Namaste Kashi Vadhyar,", name: "Name", phone: "Phone", service: "Service", date: "Preferred date", msg: "Message", close: "I would like to book / know more." };
+    const L = MSG_LABELS[lang] || MSG_LABELS.en;
     const lines = [
       L.greet,
       `${L.name}: ${form.name}`,
@@ -58,8 +62,8 @@ const ContactForm = ({ defaultService = "", externalDate = "" }) => {
     setSending(false);
   };
 
-  const ritualName = (r) => (lang === "ta" ? RITUALS_TA[r.slug].title : r.title);
-  const pkgName = (p) => (lang === "ta" ? PACKAGES_TA[p.slug].title : p.title);
+  const ritualName = (r) => pickLang(lang, r.title, RITUALS_TA[r.slug].title, RITUALS_HI[r.slug].title);
+  const pkgName = (p) => pickLang(lang, p.title, PACKAGES_TA[p.slug].title, PACKAGES_HI[p.slug].title);
 
   return (
     <form data-testid="contact-form" onSubmit={submit} className="glass rounded-3xl p-6 sm:p-8">

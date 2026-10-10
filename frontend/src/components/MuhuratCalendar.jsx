@@ -5,6 +5,7 @@ import { Calendar } from "@/components/ui/calendar";
 import SectionHead from "@/components/SectionHead";
 import Reveal from "@/components/Reveal";
 import { useLang } from "@/i18n/LanguageContext";
+import { pickLang } from "@/i18n/translations";
 import { MODIFIER_DATES, UPCOMING, toISO, formatDate } from "@/data/muhurat";
 
 const MuhuratCalendar = ({ onPick }) => {
@@ -79,7 +80,7 @@ const MuhuratCalendar = ({ onPick }) => {
                   >
                     <span className="flex items-center gap-3">
                       <span className={`muh-dot muh-dot-${m.type}`} />
-                      <span className="text-sm font-semibold text-amber-100">{lang === "ta" ? m.ta : m.en}</span>
+                      <span className="text-sm font-semibold text-amber-100">{pickLang(lang, m.en, m.ta, m.hi)}</span>
                     </span>
                     <span className="flex items-center gap-1.5 text-xs text-stone-400 transition-colors group-hover:text-amber-300">
                       <CalendarDays className="h-3.5 w-3.5" />

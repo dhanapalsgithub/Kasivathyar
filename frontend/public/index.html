@@ -38,13 +38,25 @@
         />
         <meta name="twitter:image" content="https://kashivadhyar.com/images/vadhyars-boat-tarpan.jpg" />
         <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
-        <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.svg" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/icon-192.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Kashi Vadhyar" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Rozha+One&family=Catamaran:wght@400;500;600;700&family=Noto+Serif+Tamil:wght@600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Rozha+One&family=Catamaran:wght@400;500;600;700&family=Noto+Serif+Tamil:wght@600;700&family=Mukta:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function () {
+                    navigator.serviceWorker.register("%PUBLIC_URL%/sw.js").catch(function () {});
+                });
+            }
+        </script>
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",

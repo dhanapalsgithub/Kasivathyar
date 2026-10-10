@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import { PACKAGES, CONTACT } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
-import { PACKAGES_TA, INCLUDES_TA } from "@/i18n/translations";
+import { PACKAGES_TA, PACKAGES_HI, INCLUDES_TA, INCLUDES_HI, pickLang } from "@/i18n/translations";
 
 const INCLUDES_EN = ["Comfortable stay near the ghats", "Private transport throughout", "Hereditary Tamil Vadhyar at every kshetra", "Ritual samagri & arrangements", "Darshan assistance at temples"];
 
@@ -15,10 +15,19 @@ const PackageDetail = () => {
   const base = PACKAGES.find((p) => p.slug === slug);
   if (!base) return <Navigate to="/packages" replace />;
 
-  const pkg = lang === "ta"
-    ? { ...base, ...PACKAGES_TA[slug], itinerary: base.itinerary.map((s, i) => ({ ...s, ...PACKAGES_TA[slug].itinerary[i] })) }
-    : base;
-  const includes = lang === "ta" ? INCLUDES_TA : INCLUDES_EN;
+  const pkg = lang === "en"
+    ? base
+    : (() => {
+        const m = pickLang(lang, {}, PACKAGES_TA[slug], PACKAGES_HI[slug]);
+        return { ...base, ...m, itinerary: base.itinerary.map((s, i) => ({ ...s, ...(m.itinerary?.[i] || {}) })) };
+      })();
+  const includes = pickLang(lang, INCLUDES_EN, INCLUDES_TA, INCLUDES_HI);
+  const waMsg = pickLang(
+    lang,
+    `Namaste Kashi Vadhyar, I would like to book the ${base.title} (${base.tagline}). Please share availability and details.`,
+    `நமஸ்தே காசி வாத்தியாரே, நான் ${pkg.title} (${pkg.tagline}) முன்பதிவு செய்ய விரும்புகிறேன். விவரங்களைப் பகிருங்கள்.`,
+    `नमस्ते काशी वाध्यार जी, मैं ${pkg.title} (${pkg.tagline}) बुक करना चाहता/चाहती हूँ। कृपया उपलब्धता और विवरण साझा करें।`,
+  );
 
   return (
     <div data-testid="package-detail-page">
@@ -100,11 +109,7 @@ const PackageDetail = () => {
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
-                    lang === "ta"
-                      ? `நமஸ்தே காசி வாத்தியாரே, நான் ${pkg.title} (${pkg.tagline}) முன்பதிவு செய்ய விரும்புகிறேன். விவரங்களைப் பகிருங்கள்.`
-                      : `Namaste Kashi Vadhyar, I would like to book the ${base.title} (${base.tagline}). Please share availability and details.`,
-                  )}`}
+                  href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(waMsg)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="package-whatsapp-book"

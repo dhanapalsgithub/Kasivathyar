@@ -12,13 +12,14 @@ const FESTIVAL_IMG = {
 export const FESTIVALS = [
   {
     id: "mahalaya",
-    titleEn: "Mahalaya Paksh",
-    titleTa: "மஹாளய பக்ஷம்",
+    titleEn: "Mahalaya Paksh", titleTa: "மஹாளய பக்ஷம்", titleHi: "महालय पक्ष",
     img: FESTIVAL_IMG.mahalaya,
     descEn: "Mahalaya Paksha (Pitru Paksha) is a significant 16-day period dedicated to honoring our ancestors during the waning moon of the Ashwin month — a sacred time to seek their blessings and acknowledge their contributions to our lives.",
     descTa: "மஹாளய பக்ஷம் (பித்ரு பக்ஷம்) என்பது ஆசுவின் மாத கிருஷ்ண பக்ஷத்தில் 16 நாட்கள் நமது முன்னோர்களைக் கௌரவிக்க அர்ப்பணிக்கப்பட்ட முக்கியமான காலம் — அவர்களின் ஆசீர்வாதத்தை நாடும் புனித காலம்.",
+    descHi: "महालय पक्ष (पितृ पक्ष) आश्विन माह के कृष्ण पक्ष की 16 दिवसीय अवधि है जो हमारे पूर्वजों के सम्मान को समर्पित है — उनका आशीर्वाद पाने का पवित्र समय।",
     ritualsEn: ["Tarpanam (Offerings)", "Pinda Pradaan", "Sacred Verses", "Water Offerings"],
     ritualsTa: ["தர்ப்பணம் (அர்ப்பணங்கள்)", "பிண்ட பிரதானம்", "புனித மந்திரங்கள்", "நீர் அர்ப்பணங்கள்"],
+    ritualsHi: ["तर्पणम् (अर्पण)", "पिंड प्रदान", "पवित्र मंत्र", "जल अर्पण"],
     occurrences: [
       { start: "2026-09-26", end: "2026-10-10" },
       { start: "2027-09-16", end: "2027-09-30" },
@@ -29,47 +30,44 @@ export const FESTIVALS = [
   },
   {
     id: "vinayaka",
-    titleEn: "Vinayaka Chaturthi",
-    titleTa: "விநாயகர் சதுர்த்தி",
+    titleEn: "Vinayaka Chaturthi", titleTa: "விநாயகர் சதுர்த்தி", titleHi: "विनायक चतुर्थी",
     img: FESTIVAL_IMG.vinayaka,
     descEn: "Vinayaka Chaturthi honors Lord Ganesha, the remover of obstacles. Special Ganapathi homam and poojas are performed for new beginnings and family welfare.",
     descTa: "விநாயகர் சதுர்த்தி தடைகளை நீக்கும் விநாயகரைக் கௌரவிக்கிறது. புதிய தொடக்கங்களுக்கும் குடும்ப நலனுக்கும் சிறப்பு கணபதி ஹோமம் மற்றும் பூஜைகள் நடத்தப்படுகின்றன.",
+    descHi: "विनायक चतुर्थी विघ्नहर्ता भगवान गणेश का सम्मान है। नई शुरुआत और पारिवारिक कल्याण के लिए विशेष गणपति होम और पूजाएँ होती हैं।",
     ritualsEn: ["Ganapathi Homam", "Modak Offering", "Abhishekam"],
     ritualsTa: ["கணபதி ஹோமம்", "மோதக அர்ப்பணம்", "அபிஷேகம்"],
+    ritualsHi: ["गणपति होम", "मोदक अर्पण", "अभिषेक"],
     occurrences: [
-      { start: "2026-09-14" },
-      { start: "2027-09-03" },
-      { start: "2028-08-22" },
-      { start: "2029-09-10" },
-      { start: "2030-08-30" },
+      { start: "2026-09-14" }, { start: "2027-09-03" }, { start: "2028-08-22" },
+      { start: "2029-09-10" }, { start: "2030-08-30" },
     ],
   },
   {
     id: "gokulashtami",
-    titleEn: "Gokulashtami",
-    titleTa: "கோகுலாஷ்டமி",
+    titleEn: "Gokulashtami", titleTa: "கோகுலாஷ்டமி", titleHi: "गोकुलाष्टमी",
     img: FESTIVAL_IMG.gokulashtami,
     descEn: "Gokulashtami (Janmashtami) rejoices in the birth of Lord Krishna — the eighth avatar of Vishnu — celebrated on the Ashtami of the Krishna Paksha in Bhadrapada.",
     descTa: "கோகுலாஷ்டமி (ஜன்மாஷ்டமி) விஷ்ணுவின் எட்டாவது அவதாரமான ஸ்ரீ கிருஷ்ணரின் பிறப்பைக் கொண்டாடுகிறது — பாத்ரபத மாத கிருஷ்ண பக்ஷ அஷ்டமியில்.",
+    descHi: "गोकुलाष्टमी (जन्माष्टमी) भगवान विष्णु के आठवें अवतार श्रीकृष्ण के जन्म का उत्सव है — भाद्रपद कृष्ण अष्टमी को मनाया जाता है।",
     ritualsEn: ["Krishna Abhishekam", "Bhajan & Kirtan", "Midnight Pooja"],
     ritualsTa: ["கிருஷ்ண அபிஷேகம்", "பஜனை & கீர்த்தனை", "நள்ளிரவுப் பூஜை"],
+    ritualsHi: ["कृष्ण अभिषेक", "भजन और कीर्तन", "मध्यरात्रि पूजा"],
     occurrences: [
-      { start: "2026-09-04" },
-      { start: "2027-08-25" },
-      { start: "2028-09-13" },
-      { start: "2029-09-02" },
-      { start: "2030-08-22" },
+      { start: "2026-09-04" }, { start: "2027-08-25" }, { start: "2028-09-13" },
+      { start: "2029-09-02" }, { start: "2030-08-22" },
     ],
   },
   {
     id: "navratri",
-    titleEn: "Navratri Puja",
-    titleTa: "நவராத்திரிப் பூஜை",
+    titleEn: "Navratri Puja", titleTa: "நவராத்திரிப் பூஜை", titleHi: "नवरात्रि पूजा",
     img: FESTIVAL_IMG.navratri,
     descEn: "Navratri spans nine nights symbolizing the triumph of good over evil, honoring Maa Durga, Maa Lakshmi and Maa Saraswati — fostering spiritual growth, inner strength and devotion.",
     descTa: "நவராத்திரி ஒன்பது இரவுகள் நீடித்து, துர்கா, லக்ஷ்மி, சரஸ்வதி தேவிகளைக் கௌரவித்து, ஆன்மீக வளர்ச்சியையும் பக்தியையும் வளர்க்கிறது.",
+    descHi: "नवरात्रि की नौ रातें बुराई पर अच्छाई की जीत का प्रतीक हैं — माँ दुर्गा, लक्ष्मी और सरस्वती की आराधना से आध्यात्मिक विकास और भक्ति बढ़ती है।",
     ritualsEn: ["Durga Saptashati Path", "Chandi Homam", "Kanya Poojan"],
     ritualsTa: ["துர்கா சப்தசதி பாராயணம்", "சண்டி ஹோமம்", "கன்யா பூஜை"],
+    ritualsHi: ["दुर्गा सप्तशती पाठ", "चंडी होम", "कन्या पूजन"],
     occurrences: [
       { start: "2026-10-11", end: "2026-10-19" },
       { start: "2027-10-01", end: "2027-10-09" },
@@ -80,19 +78,17 @@ export const FESTIVALS = [
   },
   {
     id: "shivaratri",
-    titleEn: "Shivaratri Special Puja",
-    titleTa: "சிவராத்திரி சிறப்புப் பூஜை",
+    titleEn: "Shivaratri Special Puja", titleTa: "சிவராத்திரி சிறப்புப் பூஜை", titleHi: "शिवरात्रि विशेष पूजा",
     img: FESTIVAL_IMG.shivaratri,
     descEn: "Maha Shivaratri celebrates Lord Shiva — the cosmic dancer and embodiment of divine energy. Devotees fast, pray and meditate, seeking Shiva's blessings at Kashi Vishwanath.",
     descTa: "மஹா சிவராத்திரி ஸ்ரீ சிவபெருமானைக் கொண்டாடுகிறது. பக்தர்கள் காசி விஸ்வநாதரில் உபவாசமிருந்து, பிரார்த்தித்து, சிவனின் ஆசீர்வாதத்தை நாடுகின்றனர்.",
+    descHi: "महाशिवरात्रि भगवान शिव का महापर्व है। भक्त काशी विश्वनाथ में उपवास, प्रार्थना और ध्यान से शिव का आशीर्वाद माँगते हैं।",
     ritualsEn: ["Rudrabhishek", "Bilva Offering", "Night-long Jaap"],
     ritualsTa: ["ருத்ராபிஷேகம்", "பில்வ அர்ப்பணம்", "இரவு முழுவதும் ஜபம்"],
+    ritualsHi: ["रुद्राभिषेक", "बिल्व अर्पण", "रात्रिभर जाप"],
     occurrences: [
-      { start: "2026-02-15" },
-      { start: "2027-02-04" },
-      { start: "2028-02-24" },
-      { start: "2029-02-12" },
-      { start: "2030-03-02" },
+      { start: "2026-02-15" }, { start: "2027-02-04" }, { start: "2028-02-24" },
+      { start: "2029-02-12" }, { start: "2030-03-02" },
     ],
   },
 ];
@@ -118,8 +114,11 @@ const todayISO = () => {
 
 const d = (s) => new Date(`${s}T00:00:00`);
 
+export const LOCALE = { en: "en-IN", ta: "ta-IN", hi: "hi-IN" };
+const loc = (lang) => LOCALE[lang] || "en-IN";
+
 export const formatDay = (iso, lang, opts = { day: "numeric", month: "short", year: "numeric" }) =>
-  d(iso).toLocaleDateString(lang === "ta" ? "ta-IN" : "en-IN", opts);
+  d(iso).toLocaleDateString(loc(lang), opts);
 
 export const formatRange = (start, end, lang) => {
   if (!end || end === start) return formatDay(start, lang);
@@ -127,10 +126,10 @@ export const formatRange = (start, end, lang) => {
   const e = d(end);
   const sameMonth = s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear();
   if (sameMonth) {
-    const day = (x) => x.toLocaleDateString(lang === "ta" ? "ta-IN" : "en-IN", { day: "numeric" });
+    const day = (x) => x.toLocaleDateString(loc(lang), { day: "numeric" });
     return `${day(s)} – ${formatDay(end, lang)}`;
   }
-  const short = (x) => x.toLocaleDateString(lang === "ta" ? "ta-IN" : "en-IN", { day: "numeric", month: "short" });
+  const short = (x) => x.toLocaleDateString(loc(lang), { day: "numeric", month: "short" });
   return `${short(s)} – ${formatDay(end, lang)}`;
 };
 
@@ -145,12 +144,16 @@ export const getUpcomingFestivals = (ref = todayISO()) =>
       end: next.end || null,
       dateEn: formatRange(next.start, next.end, "en"),
       dateTa: formatRange(next.start, next.end, "ta"),
+      dateHi: formatRange(next.start, next.end, "hi"),
       titleEn: f.titleEn,
       titleTa: f.titleTa,
+      titleHi: f.titleHi,
       descEn: f.descEn,
       descTa: f.descTa,
+      descHi: f.descHi,
       ritualsEn: f.ritualsEn,
       ritualsTa: f.ritualsTa,
+      ritualsHi: f.ritualsHi,
     };
   }).filter(Boolean);
 
@@ -158,12 +161,17 @@ export const getFestivalRanges = () =>
   FESTIVALS.flatMap((f) => f.occurrences.map((o) => ({ start: o.start, end: o.end || o.start })));
 
 export const getMuhuratDays = (ref = todayISO(), count = 6) => {
-  const monthName = (iso, lang) =>
-    d(iso).toLocaleDateString(lang === "ta" ? "ta-IN" : "en-IN", { month: "long" });
+  const monthName = (iso, lang) => d(iso).toLocaleDateString(loc(lang), { month: "long" });
   const days = [
-    ...AMAVASYA.map((iso) => ({ date: iso, type: "amavasya", en: `${monthName(iso, "en")} Amavasai`, ta: `${monthName(iso, "ta")} அமாவாசை` })),
-    ...POURNAMI.map((iso) => ({ date: iso, type: "pournami", en: `${monthName(iso, "en")} Pournami`, ta: `${monthName(iso, "ta")} பௌர்ணமி` })),
-    ...getUpcomingFestivals("2026-01-01").map((f) => ({ date: f.start, type: "festival", en: f.titleEn, ta: f.titleTa })),
+    ...AMAVASYA.map((iso) => ({
+      date: iso, type: "amavasya",
+      en: `${monthName(iso, "en")} Amavasai`, ta: `${monthName(iso, "ta")} அமாவாசை`, hi: `${monthName(iso, "hi")} अमावस्या`,
+    })),
+    ...POURNAMI.map((iso) => ({
+      date: iso, type: "pournami",
+      en: `${monthName(iso, "en")} Pournami`, ta: `${monthName(iso, "ta")} பௌர்ணமி`, hi: `${monthName(iso, "hi")} पूर्णिमा`,
+    })),
+    ...getUpcomingFestivals("2026-01-01").map((f) => ({ date: f.start, type: "festival", en: f.titleEn, ta: f.titleTa, hi: f.titleHi })),
   ];
   return days
     .filter((x) => x.date >= ref)

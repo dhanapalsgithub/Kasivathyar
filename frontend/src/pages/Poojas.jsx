@@ -5,7 +5,7 @@ import Marquee from "@/components/Marquee";
 import ContactForm from "@/components/ContactForm";
 import { RITUALS, CONTACT } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
-import { RITUALS_TA } from "@/i18n/translations";
+import { RITUALS_TA, RITUALS_HI, pickLang } from "@/i18n/translations";
 
 const Poojas = () => {
   const { lang, t } = useLang();
@@ -28,7 +28,13 @@ const Poojas = () => {
         />
         <div className="space-y-8">
           {RITUALS.map((r, i) => {
-            const rt = lang === "ta" ? RITUALS_TA[r.slug] : r;
+            const rt = pickLang(lang, r, RITUALS_TA[r.slug], RITUALS_HI[r.slug]);
+            const waMsg = pickLang(
+              lang,
+              `Namaste Kashi Vadhyar, I would like to book / know more about ${r.title}.`,
+              `நமஸ்தே காசி வாத்தியாரே, ${rt.title} பற்றி முன்பதிவு செய்ய / மேலும் அறிய விரும்புகிறேன்.`,
+              `नमस्ते काशी वाध्यार जी, मैं ${rt.title} के बारे में बुक करना / और जानना चाहता/चाहती हूँ।`,
+            );
             return (
               <Reveal key={r.slug} delay={0.05}>
                 <article
@@ -57,11 +63,7 @@ const Poojas = () => {
                       {t("samagri_text")}
                     </p>
                     <a
-                      href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
-                        lang === "ta"
-                          ? `நமஸ்தே காசி வாத்தியாரே, ${rt.title} பற்றி முன்பதிவு செய்ய / மேலும் அறிய விரும்புகிறேன்.`
-                          : `Namaste Kashi Vadhyar, I would like to book / know more about ${r.title}.`,
-                      )}`}
+                      href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(waMsg)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid={`pooja-book-${r.slug}`}

@@ -5,6 +5,7 @@ import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import { CONTACT } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
+import { pickLang } from "@/i18n/translations";
 import { getUpcomingFestivals } from "@/data/panchangam";
 
 const Events = () => {
@@ -29,10 +30,16 @@ const Events = () => {
         />
         <div className="grid gap-8 md:grid-cols-2">
           {events.map((ev, i) => {
-            const title = lang === "ta" ? ev.titleTa : ev.titleEn;
-            const date = lang === "ta" ? ev.dateTa : ev.dateEn;
-            const desc = lang === "ta" ? ev.descTa : ev.descEn;
-            const rituals = lang === "ta" ? ev.ritualsTa : ev.ritualsEn;
+            const title = pickLang(lang, ev.titleEn, ev.titleTa, ev.titleHi);
+            const date = pickLang(lang, ev.dateEn, ev.dateTa, ev.dateHi);
+            const desc = pickLang(lang, ev.descEn, ev.descTa, ev.descHi);
+            const rituals = pickLang(lang, ev.ritualsEn, ev.ritualsTa, ev.ritualsHi);
+            const waMsg = pickLang(
+              lang,
+              `Namaste Kashi Vadhyar, I would like to book a ritual for ${title} (${date}).`,
+              `நமஸ்தே காசி வாத்தியாரே, ${title} (${date}) விழாவிற்கு சடங்கு முன்பதிவு செய்ய விரும்புகிறேன்.`,
+              `नमस्ते काशी वाध्यार जी, मैं ${title} (${date}) पर्व के लिए अनुष्ठान बुक करना चाहता/चाहती हूँ।`,
+            );
             return (
               <Reveal key={ev.id} delay={(i % 2) * 0.1}>
                 <article
@@ -60,11 +67,7 @@ const Events = () => {
                       </div>
                     </div>
                     <a
-                      href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
-                        lang === "ta"
-                          ? `நமஸ்தே காசி வாத்தியாரே, ${title} (${date}) விழாவிற்கு சடங்கு முன்பதிவு செய்ய விரும்புகிறேன்.`
-                          : `Namaste Kashi Vadhyar, I would like to book a ritual for ${title} (${date}).`,
-                      )}`}
+                      href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(waMsg)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid={`event-book-${i}`}

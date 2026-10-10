@@ -13,6 +13,7 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     document.documentElement.classList.toggle("lang-ta", lang === "ta");
+    document.documentElement.classList.toggle("lang-hi", lang === "hi");
     document.documentElement.lang = lang;
   }, [lang]);
 

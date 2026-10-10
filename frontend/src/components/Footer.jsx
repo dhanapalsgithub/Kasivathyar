@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, MessageCircle } from "lucide-react";
 import { CONTACT, NAV_LINKS, RITUALS, SHLOKA } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
-import { RITUALS_TA } from "@/i18n/translations";
+import { RITUALS_TA, RITUALS_HI, pickLang } from "@/i18n/translations";
 import { LogoMark } from "@/components/Logo";
 
 const NAV_KEYS = { "/": "nav_home", "/about-us": "nav_about", "/poojas": "nav_poojas", "/packages": "nav_packages", "/events": "nav_events", "/gallery": "nav_gallery", "/contact-us": "nav_contact" };
@@ -84,7 +84,7 @@ const Footer = () => {
                   data-testid={`footer-pooja-${r.slug}`}
                   className="text-sm uppercase tracking-wider text-stone-400 transition-colors hover:text-amber-300"
                 >
-                  {lang === "ta" ? RITUALS_TA[r.slug].title : r.title}
+                  {pickLang(lang, r.title, RITUALS_TA[r.slug].title, RITUALS_HI[r.slug].title)}
                 </Link>
               </li>
             ))}
@@ -119,8 +119,20 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="border-t border-amber-500/10 py-6 text-center text-xs tracking-wider text-stone-500">
-        {t("footer_rights")}
+      <div className="border-t border-amber-500/10 py-6 text-xs tracking-wider text-stone-500">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2.5 px-4 sm:flex-row sm:px-6">
+          <span>{t("footer_rights")}</span>
+          <a
+            href="https://www.ribillingpro.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="footer-credit"
+            className="group flex items-center gap-1.5 transition-colors hover:text-amber-300"
+          >
+            {lang === "ta" ? "உருவாக்கியது:" : lang === "hi" ? "निर्माता:" : "Built by"}
+            <span className="font-semibold text-amber-400/90 transition-colors group-hover:text-amber-300">R I Billing Pro</span>
+          </a>
+        </div>
       </div>
     </footer>
   );

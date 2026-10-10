@@ -12,11 +12,15 @@ const GLogo = ({ className = "h-9 w-9" }) => (
   </svg>
 );
 
+const LABELS = {
+  en: { label: "Google Rating", based: "Based on 60 Google reviews", read: "Read all reviews", write: "Review us on Google" },
+  ta: { label: "Google மதிப்பீடு", based: "60 மதிப்புரைகளின் அடிப்படையில்", read: "அனைத்து மதிப்புரைகளையும் படிக்க", write: "Google-இல் மதிப்புரை எழுதுங்கள்" },
+  hi: { label: "Google रेटिंग", based: "60 Google समीक्षाओं के आधार पर", read: "सभी समीक्षाएँ पढ़ें", write: "Google पर समीक्षा लिखें" },
+};
+
 const GoogleBadge = () => {
   const { lang } = useLang();
-  const L = lang === "ta"
-    ? { label: "Google மதிப்பீடு", based: "60 மதிப்புரைகளின் அடிப்படையில்", read: "அனைத்து மதிப்புரைகளையும் படிக்க", write: "Google-இல் மதிப்புரை எழுதுங்கள்" }
-    : { label: "Google Rating", based: "Based on 60 Google reviews", read: "Read all reviews", write: "Review us on Google" };
+  const L = LABELS[lang] || LABELS.en;
 
   return (
     <Reveal className="mb-12">

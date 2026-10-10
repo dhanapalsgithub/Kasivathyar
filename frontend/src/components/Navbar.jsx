@@ -8,17 +8,20 @@ import LogoFull from "@/components/Logo";
 
 const NAV_KEYS = { "/": "nav_home", "/about-us": "nav_about", "/poojas": "nav_poojas", "/packages": "nav_packages", "/events": "nav_events", "/gallery": "nav_gallery", "/contact-us": "nav_contact" };
 
+const NEXT_LANG = { en: "ta", ta: "hi", hi: "en" };
+const LANG_LABEL = { en: "தமிழ்", ta: "हिंदी", hi: "EN" };
+
 const LangToggle = ({ className = "" }) => {
   const { lang, setLang } = useLang();
   return (
     <button
       data-testid="lang-toggle"
-      onClick={() => setLang(lang === "en" ? "ta" : "en")}
+      onClick={() => setLang(NEXT_LANG[lang])}
       className={`glass flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-bold tracking-wide text-amber-200 transition-all duration-300 hover:border-amber-400/50 hover:text-amber-300 ${className}`}
       aria-label="Switch language"
     >
       <Languages className="h-3.5 w-3.5" />
-      {lang === "en" ? "தமிழ்" : "EN"}
+      {LANG_LABEL[lang]}
     </button>
   );
 };

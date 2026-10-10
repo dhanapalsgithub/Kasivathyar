@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import { PACKAGES } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
-import { PACKAGES_TA } from "@/i18n/translations";
+import { PACKAGES_TA, PACKAGES_HI, pickLang } from "@/i18n/translations";
 
 const Packages = () => {
   const { lang, t } = useLang();
@@ -29,7 +29,7 @@ const Packages = () => {
         />
         <div className="grid gap-8 lg:grid-cols-3">
           {PACKAGES.map((p, i) => {
-            const pt = lang === "ta" ? { ...p, ...PACKAGES_TA[p.slug] } : p;
+            const pt = lang === "en" ? p : { ...p, ...pickLang(lang, {}, PACKAGES_TA[p.slug], PACKAGES_HI[p.slug]) };
             return (
               <Reveal key={p.slug} delay={i * 0.1}>
                 <div

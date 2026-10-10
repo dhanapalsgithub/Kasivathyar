@@ -38,6 +38,9 @@ Rebuild https://kashivadhyar.com/ (same content + navbar) in React with a dark l
 - Mobile responsive pass: fixed horizontal overflow (overflow-hidden on glow sections), single-line nav in both languages
 - FAQ section on Home (src/components/FAQ.jsx): 6 bilingual Q&As sourced from real Google "People also ask" queries (asthi visarjan cost/place/day, Tamil explanation, booking, stay+transport); matching FAQPage JSON-LD in index.html (English, mirrors visible content)
 - Gallery lightbox: full-screen viewer with prev/next, keyboard (Esc/arrows), captions, counter
+- Trilingual site: English · தமிழ் · हिंदी — navbar pill cycles en→ta→hi→en (persisted in localStorage); full Hindi layer in translations.js (UI.hi + all HI content maps), panchangam.js (titleHi/descHi/ritualsHi/dateHi), Mukta + Rozha One Devanagari fonts, pickLang/mergeLang helpers; home route has Hindi meta title/description in RouteSeo
+- Footer credit: "Built by R I Billing Pro" → https://www.ribillingpro.com/ (bilingual label), data-testid footer-credit
+- PWA: public/manifest.json (standalone, theme #0A0B0E), public/sw.js (minimal SW for installability, registered in index.html), icons generated from the diya logo (public/icons/icon-192.png, icon-512.png, icon-512-maskable.png via headless Chrome render of public/icon-maker.html), apple-touch meta tags
 
 ## Verified
 - curl: /api/health ok; POST /api/contact persists enquiry
