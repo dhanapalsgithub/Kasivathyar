@@ -1,0 +1,98 @@
+{
+  "theme": "Dark Liquid-Glass Temple (Sacred Gold & Saffron on Obsidian)",
+  "emotional_tone": "Cinematic, Sacred, Deeply Devotional, Trustworthy, Premium Heritage",
+  "typography": {
+    "heading_font": "Cormorant Garamond / Playfair Display (Serif)",
+    "body_font": "Plus Jakarta Sans / Inter (Clean Sans)",
+    "sanskrit_font": "Rozha One / Noto Serif Devanagari",
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-amber-100",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-serif font-semibold text-amber-200",
+      "h3": "text-xl sm:text-2xl font-serif font-medium text-amber-300",
+      "body": "text-base text-stone-300 leading-relaxed",
+      "caption": "text-xs tracking-widest uppercase text-amber-500/80"
+    }
+  },
+  "colors": {
+    "background_primary": "#0A0B0E",
+    "background_secondary": "#12141C",
+    "surface_glass": "rgba(22, 25, 35, 0.65)",
+    "border_glass": "rgba(212, 175, 55, 0.2)",
+    "primary_gold": "#D4AF37",
+    "secondary_saffron": "#FF9933",
+    "accent_ganga_teal": "#0F4C5C",
+    "text_primary": "#F8F5EE",
+    "text_muted": "#9CA3AF",
+    "glow_gold": "rgba(212, 175, 55, 0.15)"
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-stone-950/70 border border-amber-500/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
+    "gold_gradient_text": "bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent",
+    "marquee": "Sanskrit shloka infinity scroll with glowing dividers",
+    "diya_glow_particles": "Subtle ambient canvas with floating warm golden dust particles"
+  },
+  "layouts": {
+    "pages": [
+      "Home (Hero Video, Sanskrit Marquee, Rituals Grid, Packages, Video Gallery, Testimonials, Contact)",
+      "About Us (Story of Tamil Kshetra Purohit Mr. Venu Gopal Shastrigal, Services, Tradition)",
+      "Poojas & Rituals (Pind Daan, Shradh, Pitra Dosh Nivaran, Asthi Visarjan, Pitru Tarpan, Special Poojas)",
+      "Packages (5 Day, 7 Day, 11 Day with full day-by-day itinerary, stay, transport, rituals)",
+      "Events (Mahalaya Paksh, Vinayaka Chaturthi, Gokulashtami, Navratri Puja, Shivaratri)",
+      "Gallery (Filtered HD Photo & Video Grid of Kashi, Ghats, Aarti, Rituals)",
+      "Contact Us (Interactive form connecting directly to WhatsApp +91 99194 03288, address, phone numbers)"
+    ],
+    "navbar": "Fixed dark liquid glass navbar with logo, 7 key links, phone call CTA button, and mobile drawer menu",
+    "floating_whatsapp": "Fixed bottom-right floating WhatsApp button with live pulse ripple effect linked to wa.me/919919403288"
+  },
+  "media": {
+    "hero_video": "https://assets.mixkit.co/videos/preview/mixkit-lighting-a-small-lamp-41551-large.mp4",
+    "gallery_videos": [
+      {
+        "title": "Ganga Aarti at Dashashwamedh Ghat",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-lighting-a-small-lamp-41551-large.mp4",
+        "thumbnail": "https://images.unsplash.com/photo-1703173342540-fba340054867?q=85&w=800"
+      },
+      {
+        "title": "Holy Ganga Morning Boat Ride",
+        "url": "https://assets.mixkit.co/videos/preview/mixkit-river-flowing-gently-in-a-forest-41525-large.mp4",
+        "thumbnail": "https://images.unsplash.com/photo-1744287813968-1bb9e4ba4bb6?q=85&w=800"
+      }
+    ],
+    "image_urls": {
+      "hero_poster": "https://images.unsplash.com/photo-1703173342540-fba340054867?q=85&w=1200",
+      "about_purohit": "https://images.unsplash.com/photo-1614164974666-057a7c713ba6?q=85&w=800",
+      "pind_daan": "https://images.unsplash.com/photo-1612779774202-68e4305b849b?q=85&w=800",
+      "shradh_pooja": "https://images.unsplash.com/photo-1703173342540-fba340054867?q=85&w=800",
+      "pitra_dosh": "https://images.unsplash.com/photo-1585484172903-8d21335b9373?q=85&w=800",
+      "asthi_visarjan": "https://images.unsplash.com/photo-1744287813968-1bb9e4ba4bb6?q=85&w=800",
+      "pitru_tarpan": "https://images.unsplash.com/photo-1608412525521-08980a1f210e?q=85&w=800",
+      "special_pooja": "https://images.unsplash.com/photo-1614164974666-057a7c713ba6?q=85&w=800",
+      "package_5_day": "https://images.unsplash.com/photo-1608412525521-08980a1f210e?q=85&w=800",
+      "package_7_day": "https://images.unsplash.com/photo-1657089975754-c93bde43b01e?q=85&w=800",
+      "package_11_day": "https://images.unsplash.com/photo-1699630923504-9a24dbaab37c?q=85&w=800",
+      "gallery": [
+        "https://images.unsplash.com/photo-1703173342540-fba340054867?q=85&w=800",
+        "https://images.unsplash.com/photo-1744287813968-1bb9e4ba4bb6?q=85&w=800",
+        "https://images.unsplash.com/photo-1608412525521-08980a1f210e?q=85&w=800",
+        "https://images.unsplash.com/photo-1657089975754-c93bde43b01e?q=85&w=800",
+        "https://images.unsplash.com/photo-1699630923504-9a24dbaab37c?q=85&w=800",
+        "https://images.unsplash.com/photo-1612779774202-68e4305b849b?q=85&w=800"
+      ]
+    }
+  },
+  "component_path": "/app/frontend/src/components/",
+  "instructions_to_main_agent": [
+    "Build a multi-page React application using React Router DOM for Home, About Us, Poojas, Packages, Events, Gallery, and Contact Us.",
+    "Implement the dark liquid-glass aesthetic with framer-motion animations, custom gold glowing borders, and smooth scrolling.",
+    "The floating WhatsApp button (+91 99194 03288) must be fixed across ALL pages with a pulse indicator.",
+    "Contact form on Home and Contact Us pages must validate user inputs and generate a pre-formatted WhatsApp chat link with booking details.",
+    "Include a dynamic Sitemap generator / XML output route and Google Search Console placeholder meta tag in index.html.",
+    "Ensure all interactive elements have data-testid attributes for testing."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Do not use transparent header backgrounds over content; use backdrop-blur glass with subtle border.",
+    "Keep typography high contrast: APCA compliant white/gold text on dark obsidian backgrounds.",
+    "Ensure every interactive element has hover states and micro-interactions.",
+    "Add data-testid attributes on all buttons, form inputs, links, and cards."
+  ]
+}
