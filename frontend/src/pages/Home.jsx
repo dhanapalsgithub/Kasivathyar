@@ -8,8 +8,9 @@ import SectionHead from "@/components/SectionHead";
 import ContactForm from "@/components/ContactForm";
 import VideoCard from "@/components/VideoCard";
 import { useLang } from "@/i18n/LanguageContext";
-import { RITUALS_TA, PACKAGES_TA, TESTIMONIALS_TA, EVENTS_TA, SERVICES_TA, VIDEO_TITLES_TA } from "@/i18n/translations";
-import { HERO_VIDEO, HERO_POSTER, STATS, RITUALS, PACKAGES, TESTIMONIALS, EVENTS, VIDEOS, ABOUT_SERVICES, CONTACT } from "@/data/content";
+import { RITUALS_TA, PACKAGES_TA, TESTIMONIALS_TA, SERVICES_TA, VIDEO_TITLES_TA } from "@/i18n/translations";
+import { getUpcomingFestivals } from "@/data/panchangam";
+import { HERO_VIDEO, HERO_POSTER, STATS, RITUALS, PACKAGES, TESTIMONIALS, VIDEOS, ABOUT_SERVICES, CONTACT } from "@/data/content";
 
 const Home = () => {
   const { lang, t } = useLang();
@@ -26,6 +27,7 @@ const Home = () => {
   ];
   const statLabels = [t("stat1_label"), t("stat2_label"), t("stat3_label"), t("stat4_label")];
   const services = ABOUT_SERVICES.map((s, i) => (lang === "ta" ? SERVICES_TA[i] : s));
+  const events = getUpcomingFestivals().slice(0, 3);
 
   return (
     <div data-testid="home-page">
@@ -53,10 +55,10 @@ const Home = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="glass inline-flex items-center gap-2 rounded-full px-4 py-2"
+            className="glass inline-flex max-w-full items-center gap-2 rounded-full px-4 py-2"
           >
-            <Flame className="h-3.5 w-3.5 text-amber-400" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-200/90">
+            <Flame className="h-3.5 w-3.5 shrink-0 text-amber-400" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] leading-relaxed text-amber-200/90">
               {t("hero_eyebrow")}
             </span>
           </motion.div>
@@ -192,7 +194,7 @@ const Home = () => {
       </section>
 
       {/* RITUALS */}
-      <section className="relative py-16">
+      <section className="relative overflow-hidden py-16">
         <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-amber-600/10 blur-[140px]" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHead
@@ -286,7 +288,7 @@ const Home = () => {
       </section>
 
       {/* VIDEO GALLERY */}
-      <section className="relative py-16">
+      <section className="relative overflow-hidden py-16">
         <div className="pointer-events-none absolute right-0 top-1/3 h-[380px] w-[380px] rounded-full bg-teal-900/25 blur-[130px]" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHead
@@ -332,32 +334,34 @@ const Home = () => {
         </div>
       </section>
 
-      {/* EVENTS PREVIEW */}
+      {/* EVENTS PREVIEW — dates roll forward automatically from the panchangam dataset */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
         <SectionHead
           eyebrow={t("events_eyebrow")}
           title={<>{t("events_title1")} <span className="gold-text italic">{t("events_title2")}</span></>}
         />
         <div className="grid gap-6 md:grid-cols-3">
-          {EVENTS.slice(0, 3).map((ev, i) => {
-            const et = lang === "ta" ? { ...ev, ...EVENTS_TA[i] } : ev;
+          {events.map((ev, i) => {
+            const title = lang === "ta" ? ev.titleTa : ev.titleEn;
+            const date = lang === "ta" ? ev.dateTa : ev.dateEn;
+            const desc = lang === "ta" ? ev.descTa : ev.descEn;
             return (
-              <Reveal key={ev.title} delay={i * 0.1}>
+              <Reveal key={ev.id} delay={i * 0.1}>
                 <Link
                   to="/events"
                   data-testid={`event-preview-${i}`}
                   className="glass group block overflow-hidden rounded-3xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-400/40"
                 >
                   <div className="relative h-44 overflow-hidden">
-                    <img src={ev.img} alt={et.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <img src={ev.img} alt={title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E] to-transparent" />
                     <span className="glass-strong absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold text-amber-300">
-                      <CalendarDays className="h-3.5 w-3.5" /> {et.date}
+                      <CalendarDays className="h-3.5 w-3.5" /> {date}
                     </span>
                   </div>
                   <div className="p-5">
-                    <h3 className="font-display text-2xl font-bold text-amber-100">{et.title}</h3>
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-stone-400">{et.desc}</p>
+                    <h3 className="font-display text-2xl font-bold text-amber-100">{title}</h3>
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-stone-400">{desc}</p>
                   </div>
                 </Link>
               </Reveal>

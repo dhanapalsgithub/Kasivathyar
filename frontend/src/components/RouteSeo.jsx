@@ -1,0 +1,143 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useLang } from "@/i18n/LanguageContext";
+
+const SITE = "https://kashivadhyar.com";
+
+const META = {
+  "/": {
+    en: {
+      title: "Kashi Vadhyar – Hindu Rites & Spiritual Yatras | Kashi · Gaya · Prayagraj",
+      desc: "Pind Daan, Shradh, Asthi Visarjan, Pitru Tarpan and guided Kashi–Gaya–Prayag yatras by hereditary Tamil Kshetra Purohit. Book on WhatsApp.",
+    },
+    ta: {
+      title: "காசி வாத்தியார் – இந்து சடங்குகள் & ஆன்மீக யாத்திரைகள் | காசி · கயா · பிரயாக்",
+      desc: "பாரம்பரிய தமிழ் க்ஷேத்திர புரோகிதரின் வழிகாட்டுதலில் பிண்ட தானம், ஸ்ராத்தம், அஸ்தி விசர்ஜனம், பித்ரு தர்ப்பணம் மற்றும் காசி–கயா–பிரயாக் யாத்திரைகள். WhatsApp-இல் முன்பதிவு செய்யுங்கள்.",
+    },
+  },
+  "/about-us": {
+    en: {
+      title: "About Kashi Vadhyar — Tamil Kshetra Purohit Serving Pilgrims 100+ Years",
+      desc: "The hereditary Tamil Vadhyar family of Varanasi guiding pilgrims through Vedic rituals, yatras, stays and transport at Kashi, Gaya and Prayag for over a century.",
+    },
+    ta: {
+      title: "எங்களைப் பற்றி — 100+ ஆண்டுகள் யாத்ரீகர் சேவை | காசி வாத்தியார்",
+      desc: "நூற்றாண்டுக்கும் மேலாக காசி, கயா, பிரயாகில் வேத சடங்குகள், யாத்திரைகள், தங்குமிடம் மற்றும் போக்குவரத்து வழிகாட்டும் பாரம்பரிய தமிழ் வாத்தியார் குடும்பம்.",
+    },
+  },
+  "/poojas": {
+    en: {
+      title: "Poojas & Vedic Rituals — Pind Daan, Shradh, Tarpan | Kashi Vadhyar",
+      desc: "Pind Daan, Shradh, Pitra Dosh Nivaran, Asthi Visarjan, Pitru Tarpan and special poojas performed with complete vidhi at Kashi, Gaya and Prayag.",
+    },
+    ta: {
+      title: "பூஜைகள் & வேத சடங்குகள் — பிண்ட தானம், ஸ்ராத்தம் | காசி வாத்தியார்",
+      desc: "காசி, கயா, பிரயாகில் முழு விதியுடன் நடத்தப்படும் பிண்ட தானம், ஸ்ராத்தம், பித்ரு தோஷ நிவாரணம், அஸ்தி விசர்ஜனம், பித்ரு தர்ப்பணம் மற்றும் சிறப்புப் பூஜைகள்.",
+    },
+  },
+  "/packages": {
+    en: {
+      title: "Kashi Gaya Prayag Yatra Packages — 5, 7 & 11 Days | Kashi Vadhyar",
+      desc: "All-inclusive 5, 7 and 11 day pilgrimage packages across Prayag, Kashi and Gaya with stay, transport and hereditary Vadhyar guidance.",
+    },
+    ta: {
+      title: "காசி கயா பிரயாக் யாத்திரைத் தொகுப்புகள் — 5, 7 & 11 நாட்கள் | காசி வாத்தியார்",
+      desc: "தங்குமிடம், போக்குவரத்து மற்றும் பாரம்பரிய வாத்தியார் வழிகாட்டுதலுடன் பிரயாக், காசி, கயா முழுவதும் 5, 7 மற்றும் 11 நாள் யாத்திரைத் தொகுப்புகள்.",
+    },
+  },
+  "/packages/5-day-package": {
+    en: {
+      title: "5 Day Kashi Gaya Prayag Yatra — Stay & Transport | Kashi Vadhyar",
+      desc: "The essential 5 day yatra: Prayag Sangam, Kashi Vishwanath darshan, Ganga Aarti and Gaya Pind Daan — with stay, transport and Vadhyar guidance.",
+    },
+    ta: {
+      title: "5 நாள் காசி கயா பிரயாக் யாத்திரை | காசி வாத்தியார்",
+      desc: "அத்தியாவசிய 5 நாள் யாத்திரை: பிரயாக் சங்கமம், காசி விஸ்வநாதர் தரிசனம், கங்கை ஆரத்தி மற்றும் கயா பிண்ட தானம் — தங்குமிடம், போக்குவரத்து மற்றும் வாத்தியார் வழிகாட்டுதலுடன்.",
+    },
+  },
+  "/packages/7-day-package": {
+    en: {
+      title: "7 Day Kashi Gaya Prayag Yatra — Stay & Transport | Kashi Vadhyar",
+      desc: "The complete 7 day pilgrimage: Prayag, Kashi rituals and Gaya Pind Daan at Vishnupad — with stay, transport and hereditary Vadhyar guidance.",
+    },
+    ta: {
+      title: "7 நாள் காசி கயா பிரயாக் யாத்திரை | காசி வாத்தியார்",
+      desc: "முழுமையான 7 நாள் யாத்திரை: பிரயாக், காசி சடங்குகள் மற்றும் விஷ்ணுபாதத்தில் கயா பிண்ட தானம் — தங்குமிடம், போக்குவரத்து மற்றும் வாத்தியார் வழிகாட்டுதலுடன்.",
+    },
+  },
+  "/packages/11-day-package": {
+    en: {
+      title: "11 Day Grand Ancestral Yatra — Kashi, Gaya, Prayag | Kashi Vadhyar",
+      desc: "The grand 11 day ancestral yatra with full Pind Daan, Shradh and special poojas across Kashi, Gaya and Prayag — stay, transport and Vadhyar guidance included.",
+    },
+    ta: {
+      title: "11 நாள் பெரும் பித்ரு யாத்திரை — காசி, கயா, பிரயாக் | காசி வாத்தியார்",
+      desc: "காசி, கயா, பிரயாகில் முழு பிண்ட தானம், ஸ்ராத்தம் மற்றும் சிறப்புப் பூஜைகளுடன் 11 நாள் பெரும் பித்ரு யாத்திரை — தங்குமிடம், போக்குவரத்து அடங்கும்.",
+    },
+  },
+  "/events": {
+    en: {
+      title: "Festival Rituals & Panchangam Events | Kashi Vadhyar",
+      desc: "Book rituals for Mahalaya Paksha, Navratri, Vinayaka Chaturthi, Gokulashtami and Maha Shivaratri at Kashi — dates auto-updated from the panchangam.",
+    },
+    ta: {
+      title: "விழா சடங்குகள் & பஞ்சாங்க நாட்கள் | காசி வாத்தியார்",
+      desc: "மஹாளய பக்ஷம், நவராத்திரி, விநாயகர் சதுர்த்தி, கோகுலாஷ்டமி மற்றும் மஹா சிவராத்திரிக்கு காசியில் சடங்குகள் முன்பதிவு செய்யுங்கள் — தேதிகள் பஞ்சாங்கத்திலிருந்து தானாகப் புதுப்பிக்கப்படும்.",
+    },
+  },
+  "/gallery": {
+    en: {
+      title: "Kashi Photo & Video Gallery — Ghats, Aarti, Rituals | Kashi Vadhyar",
+      desc: "HD photos and films of the Ganga Aarti, Varanasi ghats, temple traditions and real rituals performed by our hereditary Tamil Vadhyars.",
+    },
+    ta: {
+      title: "காசி புகைப்பட & காணொளித் தொகுப்பு | காசி வாத்தியார்",
+      desc: "கங்கை ஆரத்தி, வாரணாசி படித்துறைகள், கோயில் பாரம்பரியங்கள் மற்றும் எங்கள் பாரம்பரிய தமிழ் வாத்தியார்களின் உண்மையான சடங்குகளின் HD புகைப்படங்கள் மற்றும் காணொளிகள்.",
+    },
+  },
+  "/contact-us": {
+    en: {
+      title: "Contact Kashi Vadhyar — Book Rituals on WhatsApp | Varanasi",
+      desc: "Call or WhatsApp Kashi Vadhyar at +91 99194 03288 to book Pind Daan, Shradh or a Kashi–Gaya–Prayag yatra. Pitambarpura, Harishchandra Road, Varanasi.",
+    },
+    ta: {
+      title: "தொடர்பு கொள்ள — WhatsApp-இல் சடங்கு முன்பதிவு | காசி வாத்தியார்",
+      desc: "பிண்ட தானம், ஸ்ராத்தம் அல்லது காசி–கயா–பிரயாக் யாத்திரை முன்பதிவுக்கு +91 99194 03288 எண்ணில் அழைக்கவும் அல்லது WhatsApp செய்யவும். பிதாம்பர்புரா, வாரணாசி.",
+    },
+  },
+};
+
+const setMeta = (selector, attr, value) => {
+  let el = document.head.querySelector(selector);
+  if (!el) {
+    el = document.createElement("meta");
+    const [kind, name] = attr === "name" ? ["name", selector.match(/"(.+)"/)?.[1]] : ["property", selector.match(/"(.+)"/)?.[1]];
+    el.setAttribute(kind, name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", value);
+};
+
+const RouteSeo = () => {
+  const { pathname } = useLocation();
+  const { lang } = useLang();
+
+  useEffect(() => {
+    const entry = META[pathname] || META["/"];
+    const m = entry[lang] || entry.en;
+    document.title = m.title;
+    setMeta('meta[name="description"]', "name", m.desc);
+    setMeta('meta[property="og:title"]', "property", m.title);
+    setMeta('meta[property="og:description"]', "property", m.desc);
+    setMeta('meta[name="twitter:title"]', "name", m.title);
+    setMeta('meta[name="twitter:description"]', "name", m.desc);
+    const canonical = document.head.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", `${SITE}${pathname}`);
+    const ogUrl = document.head.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", `${SITE}${pathname}`);
+  }, [pathname, lang]);
+
+  return null;
+};
+
+export default RouteSeo;

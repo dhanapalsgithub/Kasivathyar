@@ -29,7 +29,10 @@ Rebuild https://kashivadhyar.com/ (same content + navbar) in React with a dark l
 - Original SVG diya logo mark used as favicon
 - Tamil/English toggle (navbar pill, persists in localStorage; full Tamil translations for nav, hero, rituals, packages, itineraries, events, testimonials, forms; Catamaran + Noto Serif Tamil fonts via `lang-ta` html class)
 - Muhurat calendar on Contact page (Amavasya/Pournami/festival highlights from src/data/muhurat.js, upcoming list, picking a day fills the enquiry form date + scrolls to it)
-- Client's real photos integrated (public/images/): vadhyars-boat-tarpan.jpg (Pind Daan + About), boat-kalash-pooja.jpg (Shradh), homam-ritual.jpg (Special Poojas); all 3 also in Gallery
+- Client's real photos integrated (public/images/): vadhyars-boat-tarpan.jpg (Pind Daan + About), boat-kalash-pooja.jpg (Shradh), homam-ritual.jpg (Special Poojas); all 3 also in Gallery; kashi-yatra-group.jpg family photo on About page ("The Families We Serve")
+- Festival auto-dates: src/data/panchangam.js dataset (2026–2030) drives Events page + Home preview + muhurat calendar; each festival auto-rolls to its next occurrence (verified: past 2026 dates rolled to 2027)
+- Tamil SEO: per-route bilingual meta via src/components/RouteSeo.jsx (title/description/canonical/og swap en↔ta on toggle); static head has canonical, robots meta, full OG (owned og:image /images/vadhyars-boat-tarpan.jpg 1600x748), Twitter card, og:locale en_IN + ta_IN alternate, Tamil keywords, noscript content fallback; robots.txt with AI-crawler group + Disallow /api/; llms.txt
+- Mobile responsive pass: fixed horizontal overflow (overflow-hidden on glow sections), single-line nav in both languages
 
 ## Verified
 - curl: /api/health ok; POST /api/contact persists enquiry

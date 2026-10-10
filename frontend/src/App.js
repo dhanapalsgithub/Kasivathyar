@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import RouteSeo from "@/components/RouteSeo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -50,6 +51,7 @@ function App() {
       <LanguageProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <RouteSeo />
           <Navbar />
           <main>
             <Routes>

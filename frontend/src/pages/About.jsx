@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Flame, HeartHandshake, Landmark, ScrollText } from "lucide-react";
+import { ArrowRight, Flame, HeartHandshake, Landmark, ScrollText, Users } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import SectionHead from "@/components/SectionHead";
 import Reveal from "@/components/Reveal";
@@ -66,6 +66,36 @@ const About = () => {
           <div className="glass-strong absolute -bottom-5 left-6 right-6 rounded-2xl p-4 text-center sm:left-10 sm:right-10">
             <p className="gold-text font-display text-3xl font-bold">{t("years100")}</p>
             <p className="text-xs uppercase tracking-widest text-stone-400">{t("years_sub")}</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* FAMILY PHOTO */}
+      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
+        <Reveal>
+          <div className="glass group relative overflow-hidden rounded-[2rem]" data-testid="about-family-photo">
+            <img
+              src="/images/kashi-yatra-group.jpg"
+              alt="A yatri family with the Kashi Vadhyar after completing their rituals"
+              loading="lazy"
+              className="aspect-[16/9] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:aspect-[21/9]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E]/85 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 flex items-end gap-4 p-6 sm:p-8">
+              <span className="glass-strong flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl">
+                <Users className="h-5 w-5 text-amber-400" />
+              </span>
+              <div>
+                <p className="font-display text-xl font-bold text-amber-100 sm:text-2xl">
+                  {lang === "ta" ? "எங்கள் யாத்ரீகர் குடும்பங்கள்" : "The Families We Serve"}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-stone-300 sm:text-sm">
+                  {lang === "ta"
+                    ? "சடங்குகள் நிறைவேறிய பின் வாத்தியாருடன் ஒரு யாத்ரீகர் குடும்பம் — ஒவ்வொரு குடும்பமும் எங்கள் சொந்தக் குடும்பம் போல."
+                    : "A yatri family with the Vadhyar after their rituals — every family is received as our own."}
+                </p>
+              </div>
+            </div>
           </div>
         </Reveal>
       </section>
