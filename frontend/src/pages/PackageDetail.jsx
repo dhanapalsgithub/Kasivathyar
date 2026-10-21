@@ -22,10 +22,10 @@ const LOCATION_RITUALS_MAP = {
     "2. Ganapati Pujai",
     "3. Griha Preeti",
     "4. Nandi Shraddham",
-    "5. Veni Daanam (Hair Offering)",
+    "5. Veni Daanam",
     "6. Saikatalinga Pujai (Manal Pujai)",
     "7. Mahasankalpam",
-    "8. Vapanam & Triveni Snanam (Take Triveni water for Ramanathar Abhishekam, Rameshwaram)",
+    "8. Vapanam (Hair Offering), Triveni Snanam & Take Triveni water for Ramanathar Abhishekam (Rameshwaram)",
     "9. Kshetra Shraddham, Pinda Pradanam, Tarpanam, Brahma Yagnam",
     "10. Sachaila Vastra Visarjanam (Damp clothes offering)"
   ],
@@ -36,7 +36,7 @@ const LOCATION_RITUALS_MAP = {
     "4. Nandi Shraddham",
     "5. Punyaha Vachanam",
     "6. Vaishnava Srardham",
-    "7. Gou Daanam",
+    "7. Go Daanam",
     "8. Dasha Daanam",
     "9. Prajapatya Krichchara",
     "10. Ashirvadam",
@@ -62,7 +62,7 @@ const KSHETRA_SPIRITUAL_DATA = {
   },
   kashi: {
     shloka: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥",
-    overview: "Kashi is the eternal city of Lord Shiva where true liberation (Moksha) is attained. Performing Vaishnava Shrardham, Gou Daanam, and Manikarnika Snanam here under expert Vedic guidance cleanses all karmic debts.",
+    overview: "Kashi is the eternal city of Lord Shiva where true liberation (Moksha) is attained. Performing Vaishnava Shrardham, Go Daanam, and Manikarnika Snanam here under expert Vedic guidance cleanses all karmic debts.",
     rituals: LOCATION_RITUALS_MAP.kashi
   },
   gaya: {
