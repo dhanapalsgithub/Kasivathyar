@@ -14,7 +14,7 @@ const inputCls =
 const MSG_LABELS = {
   en: { greet: "Namaste Kashi Vadhyar,", name: "Name", phone: "Phone", service: "Service", date: "Preferred date", msg: "Message", close: "I would like to book / know more." },
   ta: { greet: "நமஸ்தே காசி வாத்தியாரே,", name: "பெயர்", phone: "தொலைபேசி", service: "சேவை", date: "விருப்பமான தேதி", msg: "செய்தி", close: "நான் முன்பதிவு செய்ய / மேலும் அறிய விரும்புகிறேன்." },
-  hi: { greet: "नमस्ते काशी वाध्यार जी,", name: "नाम", phone: "फ़ोन", service: "सेवा", date: "पसंदीदा तारीख़", msg: "संदेश", close: "मैं बुक करना / और जानना चाहता/चाहती हूँ।" },
+  hi: { greet: "नमस्ते काशी वाध्यार जी,", name: "नाम", phone: "फ़ोन", service: "सेवा", date: "पसंदीदा तारीख़", msg: "संदेश", "close": "मैं बुक करना / और जानना चाहता/चाहती हूँ।" },
 };
 
 const ContactForm = ({ defaultService = "", externalDate = "" }) => {
@@ -62,8 +62,18 @@ const ContactForm = ({ defaultService = "", externalDate = "" }) => {
     setSending(false);
   };
 
-  const ritualName = (r) => pickLang(lang, r.title, RITUALS_TA[r.slug].title, RITUALS_HI[r.slug].title);
-  const pkgName = (p) => pickLang(lang, p.title, PACKAGES_TA[p.slug].title, PACKAGES_HI[p.slug].title);
+  // Safe translation getters with optional chaining to prevent undefined errors
+  const ritualName = (r) => {
+    const taItem = RITUALS_TA?.[r.slug];
+    const hiItem = RITUALS_HI?.[r.slug];
+    return pickLang(lang, r.title, taItem?.title || r.title, hiItem?.title || r.title);
+  };
+
+  const pkgName = (p) => {
+    const taItem = PACKAGES_TA?.[p.slug];
+    const hiItem = PACKAGES_HI?.[p.slug];
+    return pickLang(lang, p.title, taItem?.title || p.title, hiItem?.title || p.title);
+  };
 
   return (
     <form data-testid="contact-form" onSubmit={submit} className="glass rounded-3xl p-6 sm:p-8">

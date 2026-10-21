@@ -5,10 +5,25 @@ import { useLang } from "@/i18n/LanguageContext";
 import { RITUALS_TA, RITUALS_HI, pickLang } from "@/i18n/translations";
 import { LogoMark } from "@/components/Logo";
 
-const NAV_KEYS = { "/": "nav_home", "/about-us": "nav_about", "/poojas": "nav_poojas", "/packages": "nav_packages", "/events": "nav_events", "/gallery": "nav_gallery", "/contact-us": "nav_contact" };
+const NAV_KEYS = { 
+  "/": "nav_home", 
+  "/about-us": "nav_about", 
+  "/poojas": "nav_poojas", 
+  "/packages": "nav_packages", 
+  "/events": "nav_events", 
+  "/gallery": "nav_gallery", 
+  "/contact-us": "nav_contact" 
+};
 
 const Footer = () => {
   const { lang, t } = useLang();
+
+  // Defensive language selector to prevent undefined errors
+  const getRitualTitle = (r) => {
+    const taTitle = RITUALS_TA?.[r.slug]?.title || r.title;
+    const hiTitle = RITUALS_HI?.[r.slug]?.title || r.title;
+    return pickLang(lang, r.title, taTitle, hiTitle);
+  };
 
   return (
     <footer data-testid="site-footer" className="relative border-t border-amber-500/15 bg-[#07080B]">
@@ -84,7 +99,7 @@ const Footer = () => {
                   data-testid={`footer-pooja-${r.slug}`}
                   className="text-sm uppercase tracking-wider text-stone-400 transition-colors hover:text-amber-300"
                 >
-                  {pickLang(lang, r.title, RITUALS_TA[r.slug].title, RITUALS_HI[r.slug].title)}
+                  {getRitualTitle(r)}
                 </Link>
               </li>
             ))}

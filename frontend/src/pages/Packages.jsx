@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import SectionHead from "@/components/SectionHead";
 import Reveal from "@/components/Reveal";
@@ -7,6 +8,123 @@ import Marquee from "@/components/Marquee";
 import { PACKAGES } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
 import { PACKAGES_TA, PACKAGES_HI, pickLang } from "@/i18n/translations";
+
+const MOKSHA_CIRCUIT_DATA = [
+  {
+    slug: "kashi",
+    img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
+    en: {
+      title: "KASHI",
+      tagline: "MOKSHA PURI • SHRADDH KARMA",
+      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ The eternal city of Lord Shiva, Kashi is the ultimate destination for ancestral rites, Ganga Aarti, and Manikarnika Ghat ceremonies under expert Vedic guidance."
+    },
+    ta: {
+      title: "காசி (KASHI)",
+      tagline: "மோட்ச புரி • சிரார்த்த கர்மா",
+      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ அனுபவமிக்க வைதீக வாத்தியார்களின் வழிகாட்டுதலில் மணிகர்ணிகா மற்றும் தசாஷ்வமேத படித்துறைகளில் சிரார்த்தம் மற்றும் முன்னோர்களுக்கான புனிதச் சடங்குகளைச் செய்து மோட்சம் பெறலாம்."
+    },
+    hi: {
+      title: "काशी (KASHI)",
+      tagline: "मोक्ष पुरी • श्राद्ध कर्म",
+      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ भगवान शिव की नगरी काशी में मणिकर्णिका घाट पर वैदिक मार्गदर्शन में श्राद्ध और पूर्वज कर्म करें।"
+    }
+  },
+  {
+    slug: "prayagraj",
+    img: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=800&q=80",
+    en: {
+      title: "PRAYAGRAJ",
+      tagline: "TRIVENI SANGAM • TARPAN RITUALS",
+      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ Offer Tarpan and Pind Daan at the sacred Triveni Sangam to seek powerful ancestral blessings and peace."
+    },
+    ta: {
+      title: "பிரயாக்ராஜ் (PRAYAGRAJ)",
+      tagline: "திரிவேணி சங்கமம் • தர்ப்பண சடங்குகள்",
+      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ கங்கை, யமுனை, சரஸ்வதி சங்கமிக்கும் திரிவேணி சங்கமத்தில் தர்ப்பணம் மற்றும் பிண்ட தானம் வழங்கி முன்னோர்களின் ஆசி பெறுக."
+    },
+    hi: {
+      title: "प्रयागराज (PRAYAGRAJ)",
+      tagline: "त्रिवेणी संगम • तर्पण अनुष्ठान",
+      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ पवित्र त्रिवेणी संगम पर तर्पण और पिंड दान करके पूर्वजों का आशीर्वाद प्राप्त करें।"
+    }
+  },
+  {
+    slug: "gaya",
+    img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+    en: {
+      title: "GAYA JI",
+      tagline: "PHALGU RIVER • PIND DAAN",
+      desc: "॥ न गयासदृशं तीर्थं पितॄणां तारणं क्वचित्। पिण्डदानेन विधिना यान्ति ते परमां गतिम् ॥ Perform Pind Daan on the holy banks of Phalgu River, a kshetra known for liberating generations of ancestors."
+    },
+    ta: {
+      title: "கயா ஜி (GAYA JI)",
+      tagline: "பல்கு நதி • பிண்ட தானம்",
+      desc: "॥ न गयासदृशं तीर्थं पितॄणां तारणं क्वचित्। पिण्डदानेन विधिना यान्ति ते परमां गतिम् ॥ பல தலைமுறை முன்னோர்களின் ஆன்மாவை முக்தி பெறச் செய்யும் பல்கு நதிக்கரையில் பிண்ட தானம் செய்தல்."
+    },
+    hi: {
+      title: "गया जी (GAYA JI)",
+      tagline: "फल्गु नदी • पिंड दान",
+      desc: "॥ न गयासदृशं तीर्थं पितॄणां तारणं क्वचित्। पिण्डदानेन विधिना यान्ति ते परमां गतिम् ॥ फल्गु नदी के तट पर पिंड दान करें, जो पीढ़ियों के पूर्वजों को मुक्ति दिलाता है।"
+    }
+  },
+  {
+    slug: "rameshwaram",
+    img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+    en: {
+      title: "RAMESHWARAM",
+      tagline: "THEERTHAM SNAN • PITRU TARPANAM",
+      desc: "Undertake Theertham Snan and Pitru Tarpanam at ancient sacred waters for karmic cleansing and divine grace."
+    },
+    ta: {
+      title: "ராமேஸ்வரம் (RAMESHWARAM)",
+      tagline: "தீர்த்த ஸ்நானம் • பித்ரு தர்ப்பணம்",
+      desc: "கர்ம வினைகளைப் போக்கி இறைவனின் அருள் பெற, பழமையான மற்றும் புனிதமான சமுத்திர / தீர்த்தங்களில் தீர்த்த ஸ்நானம் செய்து பித்ரு தர்ப்பணம் செய்தல்."
+    },
+    hi: {
+      title: "रामेश्वरम (RAMESHWARAM)",
+      tagline: "तीर्थ स्नान • पितृ तर्पण",
+      desc: "कर्मों की शुद्धि और दैवीय कृपा प्राप्त करने के लिए प्राचीन पवित्र जलों में तीर्थ स्नान और पितृ तर्पण करें।"
+    }
+  },
+  {
+    slug: "matru-gaya",
+    img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=800&q=80",
+    en: {
+      title: "MATRU GAYA",
+      tagline: "SIDDHPUR • GUJARAT",
+      desc: "Matru Gaya at Siddhpur is a sacred pilgrimage dedicated exclusively to performing Shraddha and Pinda Daan for one's mother."
+    },
+    ta: {
+      title: "மாத்ரு கயா (MATRU GAYA)",
+      tagline: "சித்தபூர் • குஜராத்",
+      desc: "தாய்வழி முன்னோர்களுக்கும், குறிப்பாகத் தாயாரின் ஆன்ம சாந்திக்காகவும் சிரார்த்தம் மற்றும் பிண்ட தான சடங்குகளைச் செய்வதற்காகவே பிரத்யேகமாக அமைக்கப்பட்ட புனித யாத்திரை தலமாகும்."
+    },
+    hi: {
+      title: "मातृ गया (MATRU GAYA)",
+      tagline: "सिद्धपुर • गुजरात",
+      desc: "सिद्धपुर में मातृ गया विशेष रूप से माता के लिए श्राद्ध और पिंड दान करने के लिए समर्पित एक पवित्र तीर्थ स्थल है।"
+    }
+  },
+  {
+    slug: "ashta-gaya",
+    img: "https://images.unsplash.com/photo-1627894483216-2138af692e32?auto=format&fit=crop&w=800&q=80",
+    en: {
+      title: "ASHTA GAYA SHRADDHAM",
+      tagline: "SPIRITUAL HARMONY • MOKSHA BLESSINGS",
+      desc: "The ritual involves Sankalpam, Pinda Daan, Tila Tarpanam, and Shraddha ceremonies, performed under the guidance of Vedic priests."
+    },
+    ta: {
+      title: "அஷ்ட கயா சிரார்த்தம் (ASHTA GAYA SHRADDHAM)",
+      tagline: "ஆன்மீக நல்லிணக்கம் • மோட்ச ஆசிகள்",
+      desc: "வேத விற்பன்னர்களின் நேரடி வழிகாட்டுதலின் கீழ் சங்கல்பம், பிண்ட தானம், தில தர்ப்பணம் மற்றும் முழுமையான சிரார்த்தச் சடங்குகளை உள்ளடக்கிய ஆன்மீக நிகழ்வு."
+    },
+    hi: {
+      title: "अष्ट गया श्राद्धम (ASHTA GAYA SHRADDHAM)",
+      tagline: "आध्यात्मिक सद्भाव • मोक्ष आशीर्वाद",
+      desc: "वैदिक पुरोहितों के मार्गदर्शन में संकल्पम, पिंड दान, तिल तर्पण और श्राद्ध अनुष्ठान शामिल हैं।"
+    }
+  }
+];
 
 const Packages = () => {
   const { lang, t } = useLang();
@@ -17,11 +135,73 @@ const Packages = () => {
         eyebrow={t("ph_packages_eyebrow")}
         title={t("ph_packages_t1")}
         accent={t("ph_packages_t2")}
-        image="https://images.unsplash.com/photo-1657089975754-c93bde43b01e?q=85&w=1400"
+        image="https://images.unsplash.com/photo-1657089975754-c93bde43b01e?auto=format&fit=crop&w=1400&q=80"
       />
       <Marquee />
 
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      {/* 🌟 SACRED MOKSHA CIRCUIT SECTION */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div className="text-center mb-12">
+          <motion.span 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs font-bold uppercase tracking-[0.3em] text-amber-500"
+          >
+            THE DIVINE LIBERATION PATHWAY
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="mt-2 font-display text-3xl font-bold text-amber-100 sm:text-4xl lg:text-5xl"
+          >
+            DIVINE HERITAGE <span className="gold-text italic">ETERNAL RITES</span>
+          </motion.h2>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {MOKSHA_CIRCUIT_DATA.map((item, index) => {
+            const content = item[lang] || item.en;
+            return (
+              <motion.div
+                key={item.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                whileHover={{ y: -6 }}
+                className="glass group flex flex-col overflow-hidden rounded-3xl border border-amber-500/15 transition-all duration-500 hover:border-amber-400/50 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)]"
+              >
+                <div className="relative h-56 overflow-hidden bg-stone-900">
+                  <img 
+                    src={item.img} 
+                    alt={content.title} 
+                    loading="lazy" 
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E] via-transparent to-transparent" />
+                  <span className="glass-strong absolute left-4 top-4 rounded-full px-3.5 py-1 text-[10px] font-bold uppercase tracking-widest text-amber-300">
+                    {content.tagline}
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-display text-2xl font-bold text-amber-100">{content.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-stone-300 flex-1">{content.desc}</p>
+                  <div className="mt-6 pt-4 border-t border-amber-500/10 flex items-center gap-2 text-xs font-semibold tracking-wider text-amber-400">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    <span>{lang === "ta" ? "வைதீக முறை • அங்கீகரிக்கப்பட்ட சடங்குகள்" : lang === "hi" ? "वैदिक विधि • प्रामाणिक अनुष्ठान" : "Vedic Method • Authentic Rituals"}</span>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* MAIN PACKAGES SECTION */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 border-t border-amber-500/10">
         <SectionHead
           eyebrow={t("packages_pg_eyebrow")}
           title={<>{t("packages_pg_title1")} <span className="gold-text italic">{t("packages_pg_title2")}</span></>}
@@ -36,7 +216,7 @@ const Packages = () => {
                   data-testid={`packages-card-${p.slug}`}
                   className="glass group flex h-full flex-col overflow-hidden rounded-3xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-400/40"
                 >
-                  <div className="relative h-60 overflow-hidden">
+                  <div className="relative h-60 overflow-hidden bg-stone-900">
                     <img src={p.img} alt={pt.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E] via-transparent to-transparent" />
                     <span className="glass-strong absolute left-4 top-4 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-amber-300">

@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field, ConfigDict, BeforeValidator
 from typing import Annotated, Optional
 import uuid
 from datetime import datetime, timezone
+from contextlib import asynccontextmanager
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -17,7 +18,17 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-app = FastAPI(title="Kashi Vadhyar API")
+# 🚀 FastAPI Lifespan Handler (To fix on_event deprecation warning)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: Database client is ready via global scope
+    logging.info("Starting up Kashi Vadhyar API & MongoDB client...")
+    yield
+    # Shutdown: Close MongoDB client connection safely
+    logging.info("Shutting down Kashi Vadhyar API & closing MongoDB client...")
+    client.close()
+
+app = FastAPI(title="Kashi Vadhyar API", lifespan=lifespan)
 api_router = APIRouter(prefix="/api")
 
 PyObjectId = Annotated[str, BeforeValidator(str)]
@@ -82,13 +93,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=True)

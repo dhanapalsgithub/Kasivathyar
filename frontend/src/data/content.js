@@ -41,9 +41,9 @@ export const STATS = [
 
 export const RITUALS = [
   {
-    slug: "pind-daan",
-    title: "Pind Daan",
-    desc: "Honor your ancestors with our comprehensive Pind Daan service, performed at the sacred ghats of Kashi, Gaya and Prayag as per Vedic tradition.",
+    slug: "pind-Daanam",
+    title: "Pind Daanam",
+    desc: "Honor your ancestors with our comprehensive Pind Daanam service, performed at the sacred ghats of Kashi, Gaya and Prayag as per Vedic tradition.",
     img: "/images/vadhyars-boat-tarpan.jpg",
   },
   {
@@ -53,8 +53,8 @@ export const RITUALS = [
     img: "/images/boat-kalash-pooja.jpg",
   },
   {
-    slug: "pitra-dosh-nivaran",
-    title: "Pitra Dosh Nivaran",
+    slug: "pitra-dosh-pariharam",
+    title: "Pitra Dosh pariharam",
     desc: "Bring harmony to your family with Pitra Dosh Nivaran rituals that gently pacify ancestral afflictions in the horoscope.",
     img: "https://images.unsplash.com/photo-1585484172903-8d21335b9373?q=85&w=800",
   },

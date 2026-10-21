@@ -1,13 +1,65 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, CheckCircle2, MessageCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle2, MessageCircle, Sparkles, Scroll } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import { PACKAGES, CONTACT } from "@/data/content";
 import { useLang } from "@/i18n/LanguageContext";
 import { PACKAGES_TA, PACKAGES_HI, INCLUDES_TA, INCLUDES_HI, pickLang } from "@/i18n/translations";
 
-const INCLUDES_EN = ["Comfortable stay near the ghats", "Private transport throughout", "Hereditary Tamil Vadhyar at every kshetra", "Ritual samagri & arrangements", "Darshan assistance at temples"];
+const INCLUDES_EN = [
+  "Comfortable stay near the ghats",
+  "Private transport throughout",
+  "Hereditary Tamil Vadhyar at every kshetra",
+  "Ritual samagri & arrangements",
+  "Darshan assistance at temples"
+];
+
+// 🌟 Detailed Rituals by Place / Location Name
+const LOCATION_RITUALS_MAP = {
+  prayag: [
+    "Ganapati Pooja",
+    "Graha Preeti Daanam",
+    "Veni Daanam (Hair Offering)",
+    "Mahasankalpam (Pap Kshayartham)",
+    "Rameshwaram Sand Puja",
+    "Hiranya Shraddham",
+    "Pinda Pradanam & Tila Tarpanam"
+  ],
+  kashi: [
+    "Poorvanga Sankalpam & Punyaha Vachanam",
+    "Chakra & Manikarnika Theertha Snanam",
+    "Manikarnika Hiranya Roopa Shraddham (with Homam)",
+    "Pinda Daanam & Tila Tarpanam",
+    "Gou Daanam & Dasha Daanam"
+  ],
+  gaya: [
+    "Maha Sankalpam & Phalguni Theertha Snanam",
+    "Phalguni Hiranya Shraddham",
+    "Vishnu Paada Theertha Shraddham & Darshanam",
+    "Maatru & Pitru Shodashi",
+    "Akshaya Vata Shraddham (with Homam)"
+  ]
+};
+
+// 🌟 Kshetra Spiritual Data with Shlokas
+const KSHETRA_SPIRITUAL_DATA = {
+  prayag: {
+    shloka: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥",
+    overview: "Prayagraj (Prayag) sits at the sacred Triveni Sangam confluence of Ganga, Yamuna, and Saraswati. Revered as Tirth Raj, it is the primary kshetra for Veni Daanam, Pitru Tarpanam, and sacred bathing rituals.",
+    rituals: LOCATION_RITUALS_MAP.prayag
+  },
+  kashi: {
+    shloka: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥",
+    overview: "The eternal city of Lord Shiva, Kashi is the ultimate destination for ancestral rites, Manikarnika Ghat ceremonies, and Kashi Vishwanath Darshan under expert Vedic guidance.",
+    rituals: LOCATION_RITUALS_MAP.kashi
+  },
+  gaya: {
+    shloka: "॥ न गयासदृशं तीर्थं पितॄणां तारणं क्वचित्। पिण्डदानेन विधिना यान्ति ते परमां गतिम् ॥",
+    overview: "The sacred grounds of Gaya Ji provide eternal peace for ancestral lineages. We coordinate Pind Daan rituals at Phalgu River and Vishnupad Temple following strict Vedic traditions.",
+    rituals: LOCATION_RITUALS_MAP.gaya
+  }
+};
 
 const PackageDetail = () => {
   const { slug } = useParams();
@@ -21,13 +73,29 @@ const PackageDetail = () => {
         const m = pickLang(lang, {}, PACKAGES_TA[slug], PACKAGES_HI[slug]);
         return { ...base, ...m, itinerary: base.itinerary.map((s, i) => ({ ...s, ...(m.itinerary?.[i] || {}) })) };
       })();
+
   const includes = pickLang(lang, INCLUDES_EN, INCLUDES_TA, INCLUDES_HI);
   const waMsg = pickLang(
     lang,
     `Namaste Kashi Vadhyar, I would like to book the ${base.title} (${base.tagline}). Please share availability and details.`,
     `நமஸ்தே காசி வாத்தியாரே, நான் ${pkg.title} (${pkg.tagline}) முன்பதிவு செய்ய விரும்புகிறேன். விவரங்களைப் பகிருங்கள்.`,
-    `नमस्ते काशी वाध्यार जी, मैं ${pkg.title} (${pkg.tagline}) बुक करना चाहता/चाहती हूँ। कृपया उपलब्धता और विवरण साझा करें।`,
+    `नमस्ते काशी वाध्यार जी, मैं ${pkg.title} (${pkg.tagline}) बुक करना चाहता/चाहती हूँ। कृपया उपलब्धता और विवरण साझा करें।`
   );
+
+  // Helper to match location rituals dynamically for each day
+  const getDayRituals = (step) => {
+    if (step.rituals && step.rituals.length > 0) return step.rituals;
+    const placeLower = (step.place || "").toLowerCase();
+    if (placeLower.includes("prayag")) return LOCATION_RITUALS_MAP.prayag;
+    if (placeLower.includes("kashi")) return LOCATION_RITUALS_MAP.kashi;
+    if (placeLower.includes("gaya")) return LOCATION_RITUALS_MAP.gaya;
+    return null;
+  };
+
+  // Match main Kshetra shloka header based on package content
+  const firstDayPlace = (base.itinerary?.[0]?.place || "").toLowerCase();
+  const matchedKshetraKey = Object.keys(KSHETRA_SPIRITUAL_DATA).find(k => slug.includes(k) || firstDayPlace.includes(k)) || "kashi";
+  const kshetraHeader = KSHETRA_SPIRITUAL_DATA[matchedKshetraKey];
 
   return (
     <div data-testid="package-detail-page">
@@ -73,27 +141,67 @@ const PackageDetail = () => {
           {t("back_packages")}
         </Link>
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_360px]">
+        {/* 🌟 Spiritual Shloka Header Section */}
+        {kshetraHeader && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="glass mt-8 rounded-3xl p-6 sm:p-8 border border-amber-500/20"
+          >
+            <div className="text-center max-w-3xl mx-auto">
+              <Scroll className="mx-auto h-8 w-8 text-amber-400 mb-3" />
+              <p className="font-sanskrit text-lg sm:text-xl font-medium text-amber-200 leading-relaxed italic">
+                {kshetraHeader.shloka}
+              </p>
+              <p className="mt-3 text-sm sm:text-base leading-relaxed text-stone-300">
+                {kshetraHeader.overview}
+              </p>
+            </div>
+          </motion.div>
+        )}
+
+        <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_360px]">
           <div>
             <h2 className="font-display text-3xl font-bold text-amber-100">{t("itinerary_h")}</h2>
             <div className="mt-8 space-y-0">
-              {pkg.itinerary.map((step, i) => (
-                <Reveal key={i} delay={i * 0.04}>
-                  <div data-testid={`itinerary-${i}`} className="relative flex gap-6 pb-8">
-                    {i < pkg.itinerary.length - 1 && (
-                      <span className="absolute left-[21px] top-12 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-amber-500/50 to-amber-500/5" aria-hidden="true" />
-                    )}
-                    <span className="glass-strong gold-ring z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold text-amber-300">
-                      {i + 1}
-                    </span>
-                    <div className="glass flex-1 rounded-2xl p-5 transition-colors duration-300 hover:border-amber-400/40">
-                      <p className="text-[11px] font-bold uppercase tracking-widest text-amber-500">{t("day_prefix")} {i + 1}</p>
-                      <h3 className="mt-1 font-display text-xl font-semibold text-amber-100">{step.place}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-stone-400">{step.detail}</p>
+              {pkg.itinerary.map((step, i) => {
+                const dayRituals = getDayRituals(step);
+                return (
+                  <Reveal key={i} delay={i * 0.04}>
+                    <div data-testid={`itinerary-${i}`} className="relative flex gap-6 pb-8">
+                      {i < pkg.itinerary.length - 1 && (
+                        <span className="absolute left-[21px] top-12 h-[calc(100%-3rem)] w-px bg-gradient-to-b from-amber-500/50 to-amber-500/5" aria-hidden="true" />
+                      )}
+                      <span className="glass-strong gold-ring z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold text-amber-300">
+                        {i + 1}
+                      </span>
+                      <div className="glass flex-1 rounded-2xl p-5 transition-colors duration-300 hover:border-amber-400/40">
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-amber-500">{t("day_prefix")} {i + 1}</p>
+                        <h3 className="mt-1 font-display text-xl font-semibold text-amber-100">{step.place}</h3>
+                        <p className="mt-1.5 text-sm leading-relaxed text-stone-400">{step.detail}</p>
+
+                        {/* 🌟 Day-wise Specific Rituals List */}
+                        {dayRituals && dayRituals.length > 0 && (
+                          <div className="mt-4 pt-4 border-t border-amber-500/10">
+                            <p className="text-xs font-bold uppercase tracking-wider text-amber-300 mb-2.5 flex items-center gap-1.5">
+                              <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Key Rituals & Ceremonies Scheduled:
+                            </p>
+                            <ul className="grid gap-2 sm:grid-cols-2">
+                              {dayRituals.map((r, rIdx) => (
+                                <li key={rIdx} className="text-xs text-stone-300 flex items-center gap-2">
+                                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+                                  <span>{r}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
 
