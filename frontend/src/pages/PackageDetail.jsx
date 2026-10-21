@@ -15,7 +15,7 @@ const INCLUDES_EN = [
   "Darshan assistance at temples"
 ];
 
-// 🌟 Detailed Rituals based on Client Note for Each Kshetra
+// 🌟 Detailed Rituals based on Client Note & Audio Update for Each Kshetra
 const LOCATION_RITUALS_MAP = {
   prayag: [
     "1. Anugna",
@@ -53,6 +53,15 @@ const LOCATION_RITUALS_MAP = {
   ]
 };
 
+// 🌟 Pancha Maha Teertha Shraddham for Kashi (As requested)
+const PANCHA_MAHA_TEERTHA_RITUALS = [
+  "1. Assi Ganga",
+  "2. Rudra Sarovar Dashashwamedh",
+  "3. Varuna Ganga",
+  "4. Pancha Ganga",
+  "5. Manikarnika"
+];
+
 // 🌟 Spiritual Data with Shlokas & Significance for each Kshetra
 const KSHETRA_SPIRITUAL_DATA = {
   prayag: {
@@ -62,7 +71,7 @@ const KSHETRA_SPIRITUAL_DATA = {
   },
   kashi: {
     shloka: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥",
-    overview: "Kashi is the eternal city of Lord Shiva where true liberation (Moksha) is attained. Performing Vaishnava Shrardham, Go Daanam, and Manikarnika Snanam here under expert Vedic guidance cleanses all karmic debts.",
+    overview: "Kashi is the eternal city of Lord Shiva where true liberation (Moksha) is attained. Performing Vaishnava Shrardham, Go Daanam, and Manikarnika Snanam here under expert Vedic guidance cleanses all karmic debts. (Includes Pancha Maha Teertha Shraddham across Assi, Dashashwamedh, Varuna, Pancha Ganga, and Manikarnika).",
     rituals: LOCATION_RITUALS_MAP.kashi
   },
   gaya: {
@@ -176,6 +185,8 @@ const PackageDetail = () => {
             <div className="mt-8 space-y-0">
               {pkg.itinerary.map((step, i) => {
                 const dayRituals = getDayRituals(step);
+                const isKashiStep = (step.place || "").toLowerCase().includes("kashi");
+
                 return (
                   <Reveal key={i} delay={i * 0.04}>
                     <div data-testid={`itinerary-${i}`} className="relative flex gap-6 pb-8">
@@ -201,6 +212,23 @@ const PackageDetail = () => {
                                 <li key={rIdx} className="text-xs text-stone-300 flex items-center gap-2">
                                   <CheckCircle2 className="h-3.5 w-3.5 text-amber-400 shrink-0" />
                                   <span>{r}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {/* 🌟 Pancha Maha Teertha Shraddham specifically for Kashi days */}
+                        {isKashiStep && (
+                          <div className="mt-4 pt-4 border-t border-amber-500/10">
+                            <p className="text-xs font-bold uppercase tracking-wider text-amber-300 mb-2.5 flex items-center gap-1.5">
+                              <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Pancha Maha Teertha Shraddham:
+                            </p>
+                            <ul className="grid gap-2 sm:grid-cols-2">
+                              {PANCHA_MAHA_TEERTHA_RITUALS.map((pmt, pmtIdx) => (
+                                <li key={pmtIdx} className="text-xs text-stone-300 flex items-center gap-2">
+                                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+                                  <span>{pmt}</span>
                                 </li>
                               ))}
                             </ul>
