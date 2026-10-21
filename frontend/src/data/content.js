@@ -87,11 +87,53 @@ export const PACKAGES = [
     plan: ["Prayag 1 Day", "Kashi 2 Days", "Gaya 1 Day", "Kashi 1 Day"],
     includes: ["Stay & Transport Included", "Hereditary Vadhyar Guidance", "All Ritual Arrangements"],
     itinerary: [
-      { day: "Day 1", place: "Prayag (Prayagraj)", detail: "Arrival, Triveni Sangam holy dip, Bade Hanuman Ji darshan and Akshayavat visit." },
-      { day: "Day 2", place: "Prayag → Kashi", detail: "Travel to Kashi. Evening Ganga Aarti at Dashashwamedh Ghat." },
-      { day: "Day 3", place: "Kashi", detail: "Kashi Vishwanath Temple darshan, Annapurna Devi, Kal Bhairav and Sankat Mochan darshan." },
-      { day: "Day 4", place: "Gaya", detail: "Vishnupad Temple Pind Daan rituals, Akshayavat and Mangala Gauri darshan." },
-      { day: "Day 5", place: "Kashi", detail: "Morning boat ride on the Ganga, final pooja and departure with blessings." },
+      { 
+        day: "Day 1", 
+        place: "Prayagraj", 
+        detail: "Triveni Sangam holy dip, Veni Daanam, Saikatalinga Pujai, Vapanam, Kshetra Shraddham, and collect Triveni water for Rameshwaram Abhishekam.",
+        rituals: [
+          "1. Anugna", "2. Ganapati Pujai", "3. Griha Preeti", "4. Nandi Shraddham", 
+          "5. Veni Daanam", "6. Saikatalinga Pujai (Manal Pujai)", "7. Mahasankalpam", 
+          "8. Vapanam & Triveni Snanam", "9. Kshetra Shraddham, Pinda Pradanam, Tarpanam, Brahma Yagnam", 
+          "10. Sachaila Vastra Visarjanam"
+        ]
+      },
+      { 
+        day: "Day 2", 
+        place: " Kashi", 
+        detail: "Travel to Kashi. Evening Ganga Aarti experience at Dashashwamedh Ghat." 
+      },
+      { 
+        day: "Day 3", 
+        place: "Kashi (Varanasi)", 
+        detail: "Kashi Vishwanath Temple, Annapurna Devi, Kal Bhairav, and Pancha Maha Teertha Shraddham.",
+        rituals: [
+          "1. Anugna", "2. Ganapati Pujai", "3. Griha Preeti", "4. Nandi Shraddham", 
+          "5. Punyaha Vachanam", "6. Vaishnava Srardham", "7. Go Daanam", "8. Dasha Daanam", 
+          "9. Prajapatya Krichchara", "10. Ashirvadam", "11. Mahasankalpam", 
+          "12. Chakra Teertha Manikarnika Snanam", "13. Kshetra Shraddham"
+        ]
+      },
+      { 
+        day: "Day 4", 
+        place: "Gaya", 
+        detail: "Falguni river rites, Vishnupada Pind Daan, and Akshyayavata Shraddham.",
+        rituals: [
+          "1. Mahasankalpam", "2. Falguni Theertha Snanam", 
+          "3. Falguni Hiranya Shardhham (17 Pindam)", 
+          "4. Vishnupada Hiranya Srardham (64+ Pindam)", 
+          "5. Akshyyavata Shraddham (64+ Pindam)"
+        ]
+      },
+      { 
+        day: "Day 5", 
+        place: "Kashi (Varanasi Day 5 Rites)", 
+        detail: "Final day auspicious poojas, Ganga Pujai, Dampati Pujai, Dasha/Pancha Daanam, Samaradhanai, and Ashirwadam.",
+        rituals: [
+          "1. Ganga Pujai", "2. Dampati Pujai", "3. Dasha Daanam", 
+          "4. Pancha Daanam", "5. Samaradhanai", "6. Ashirwadam"
+        ]
+      },
     ],
   },
   {
@@ -99,16 +141,16 @@ export const PACKAGES = [
     title: "7 Day Package",
     tagline: "The Complete Pilgrimage",
     img: "https://images.unsplash.com/photo-1657089975754-c93bde43b01e?q=85&w=900",
-    plan: ["Prayag 1 Day", "Kashi 2 Days", "Gaya 2 Days", "Kashi 1 Day"],
+    plan: ["Prayag 1 Day", "Kashi 2 Days", "Gaya 2 Days", "Kashi 2 Days"],
     includes: ["Stay & Transport Included", "Hereditary Vadhyar Guidance", "All Ritual Arrangements"],
     itinerary: [
-      { day: "Day 1", place: "Prayag", detail: "Triveni Sangam snan, Bade Hanuman Ji, Akshayavat and Anand Bhavan darshan." },
-      { day: "Day 2", place: "Prayag → Kashi", detail: "Journey to Kashi, evening Ganga Aarti experience." },
-      { day: "Day 3", place: "Kashi", detail: "Kashi Vishwanath, Annapurna Devi, Kal Bhairav and Durga Kund darshan." },
-      { day: "Day 4", place: "Kashi", detail: "Pitru Tarpan and Shradh rituals at the ghats with our Vadhyars." },
+      { day: "Day 1", place: "Prayagraj", detail: "Triveni Sangam snan, Veni Daanam, Saikatalinga Pujai, Vapanam and Kshetra Shraddham." },
+      { day: "Day 2", place: " Kashi", detail: "Journey to Kashi, evening Ganga Aarti experience." },
+      { day: "Day 3", place: "Kashi", detail: "Anugna, Vaishnava Srardham, Go Daanam, Manikarnika Snanam and Kashi Vishwanath darshan." },
+      { day: "Day 4", place: "Kashi", detail: "Pancha Maha Teertha Shraddham across 5 sacred ghats with hereditary Tamil Vadhyars." },
       { day: "Day 5", place: "Gaya", detail: "Travel to Gaya, Vishnupad Temple darshan and ritual preparation." },
-      { day: "Day 6", place: "Gaya", detail: "Pind Daan at Vishnupad, Pretshila and Akshayavat; Bodh Gaya visit." },
-      { day: "Day 7", place: "Kashi", detail: "Return to Kashi, morning Ganga boat ride and departure." },
+      { day: "Day 6", place: "Gaya", detail: "Falguni Hiranya Shraddham (17 Pindam), Vishnupad & Akshyayavata Shraddham (64+ Pindam)." },
+      { day: "Day 7", place: "Kashi", detail: "Ganga Pujai, Dampati Pujai, Dasha Daanam, Samaradhanai, Ashirwadam and departure." },
     ],
   },
   {
@@ -119,17 +161,17 @@ export const PACKAGES = [
     plan: ["Prayag 1 Day", "Kashi 6 Days", "Gaya 3 Days", "Kashi 1 Day"],
     includes: ["Stay & Transport Included", "Hereditary Vadhyar Guidance", "All Ritual Arrangements"],
     itinerary: [
-      { day: "Day 1", place: "Prayag", detail: "Triveni Sangam holy dip, Bade Hanuman Ji and Akshayavat darshan." },
-      { day: "Day 2", place: "Prayag → Kashi", detail: "Arrive in Kashi, evening Ganga Aarti at Dashashwamedh Ghat." },
+      { day: "Day 1", place: "Prayagraj", detail: "Triveni Sangam holy dip, Veni Daanam, Saikatalinga Pujai, and Kshetra Shraddham." },
+      { day: "Day 2", place: " Kashi", detail: "Arrive in Kashi, evening Ganga Aarti at Dashashwamedh Ghat." },
       { day: "Day 3", place: "Kashi", detail: "Kashi Vishwanath Temple, Annapurna Devi and Kal Bhairav darshan." },
-      { day: "Day 4", place: "Kashi", detail: "Pind Daan and Pitru Tarpan at Manikarnika and Panchganga ghats." },
-      { day: "Day 5", place: "Kashi", detail: "Shradh vidhi and brahmin bhojan arrangements." },
-      { day: "Day 6", place: "Kashi", detail: "Sarnath excursion — Dhamek Stupa and the sacred Buddhist sites." },
-      { day: "Day 7", place: "Kashi", detail: "Special poojas — Rudrabhishek at Kashi Vishwanath." },
-      { day: "Day 8", place: "Gaya", detail: "Travel to Gaya, Vishnupad Temple darshan." },
-      { day: "Day 9", place: "Gaya", detail: "Pind Daan at Vishnupad, Pretshila Hill and Akshayavat." },
-      { day: "Day 10", place: "Gaya", detail: "Bodh Gaya — Mahabodhi Temple and monastery visits." },
-      { day: "Day 11", place: "Kashi", detail: "Return to Kashi, farewell Ganga aarti and departure." },
+      { day: "Day 4", place: "Kashi", detail: "Anugna, Vaishnava Srardham, Go Daanam, Dasha Daanam and Manikarnika Snanam." },
+      { day: "Day 5", place: "Kashi", detail: "Pancha Maha Teertha Shraddham (Assi, Dashashwamedh, Varuna, Pancha Ganga, Manikarnika)." },
+      { day: "Day 6", place: "Kashi", detail: "Sarnath excursion and temple visits." },
+      { day: "Day 7", place: "Kashi", detail: "Ganga Pujai, Dampati Pujai, Pancha Daanam, Samaradhanai and Ashirwadam." },
+      { day: "Day 8", place: "Gaya", detail: "Travel to Gaya, Falguni river Snanam and preparation." },
+      { day: "Day 9", place: "Gaya", detail: "Falguni Hiranya Shraddham (17 Pindam), Vishnupada & Akshyayavata Shraddham (64+ Pindam)." },
+      { day: "Day 10", place: "Gaya", detail: "Bodh Gaya — Mahabodhi Temple and local visits." },
+      { day: "Day 11", place: "Kashi", detail: "Return to Kashi, final blessings, and departure." },
     ],
   },
 ];
