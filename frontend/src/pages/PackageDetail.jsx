@@ -15,48 +15,59 @@ const INCLUDES_EN = [
   "Darshan assistance at temples"
 ];
 
-// 🌟 Detailed Rituals by Place / Location Name
+// 🌟 Detailed Rituals based on Client Note for Each Kshetra
 const LOCATION_RITUALS_MAP = {
   prayag: [
-    "Ganapati Pooja",
-    "Graha Preeti Daanam",
-    "Veni Daanam (Hair Offering)",
-    "Mahasankalpam (Pap Kshayartham)",
-    "Rameshwaram Sand Puja",
-    "Hiranya Shraddham",
-    "Pinda Pradanam & Tila Tarpanam"
+    "1. Anugna",
+    "2. Ganapati Pujai",
+    "3. Griha Preeti",
+    "4. Nandi Shraddham",
+    "5. Veni Daanam (Hair Offering)",
+    "6. Saikatalinga Pujai (Manal Pujai)",
+    "7. Mahasankalpam",
+    "8. Vapanam & Triveni Snanam (Take Triveni water for Ramanathar Abhishekam, Rameshwaram)",
+    "9. Kshetra Shraddham, Pinda Pradanam, Tarpanam, Brahma Yagnam",
+    "10. Sachaila Vastra Visarjanam (Damp clothes offering)"
   ],
   kashi: [
-    "Poorvanga Sankalpam & Punyaha Vachanam",
-    "Chakra & Manikarnika Theertha Snanam",
-    "Manikarnika Hiranya Roopa Shraddham (with Homam)",
-    "Pinda Daanam & Tila Tarpanam",
-    "Gou Daanam & Dasha Daanam"
+    "1. Anugna",
+    "2. Ganapati Pujai",
+    "3. Griha Preeti",
+    "4. Nandi Shraddham",
+    "5. Punyaha Vachanam",
+    "6. Vaishnava Srardham",
+    "7. Gou Daanam",
+    "8. Dasha Daanam",
+    "9. Prajapatya Krichchara",
+    "10. Ashirvadam",
+    "11. Mahasankalpam",
+    "12. Chakra Teertha & Manikarnika Snanam",
+    "13. Kshetra Shraddham"
   ],
   gaya: [
-    "Maha Sankalpam & Phalguni Theertha Snanam",
-    "Phalguni Hiranya Shraddham",
-    "Vishnu Paada Theertha Shraddham & Darshanam",
-    "Maatru & Pitru Shodashi",
-    "Akshaya Vata Shraddham (with Homam)"
+    "1. Mahasankalpam",
+    "2. Falguni Theertha Snanam",
+    "3. Falguni Hiranya Shardhham (17 Pindam)",
+    "4. Vishnupada Hiranya Srardham (64+ Pindam)",
+    "5. Akshyyavata Shraddham (64+ Pindam)"
   ]
 };
 
-// 🌟 Kshetra Spiritual Data with Shlokas
+// 🌟 Spiritual Data with Shlokas & Significance for each Kshetra
 const KSHETRA_SPIRITUAL_DATA = {
   prayag: {
     shloka: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥",
-    overview: "Prayagraj (Prayag) sits at the sacred Triveni Sangam confluence of Ganga, Yamuna, and Saraswati. Revered as Tirth Raj, it is the primary kshetra for Veni Daanam, Pitru Tarpanam, and sacred bathing rituals.",
+    overview: "Prayag is revered as the king of all pilgrimage centers ('Tirth Raj'). Bathing at the Triveni Sangam confluence of Ganga, Yamuna, and Saraswati along with Veni Daanam and Kshetra Shraddham purifies generations and grants supreme spiritual peace.",
     rituals: LOCATION_RITUALS_MAP.prayag
   },
   kashi: {
     shloka: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥",
-    overview: "The eternal city of Lord Shiva, Kashi is the ultimate destination for ancestral rites, Manikarnika Ghat ceremonies, and Kashi Vishwanath Darshan under expert Vedic guidance.",
+    overview: "Kashi is the eternal city of Lord Shiva where true liberation (Moksha) is attained. Performing Vaishnava Shrardham, Gou Daanam, and Manikarnika Snanam here under expert Vedic guidance cleanses all karmic debts.",
     rituals: LOCATION_RITUALS_MAP.kashi
   },
   gaya: {
     shloka: "॥ न गयासदृशं तीर्थं पितॄणां तारणं क्वचित्। पिण्डदानेन विधिना यान्ति ते परमां गतिम् ॥",
-    overview: "The sacred grounds of Gaya Ji provide eternal peace for ancestral lineages. We coordinate Pind Daan rituals at Phalgu River and Vishnupad Temple following strict Vedic traditions.",
+    overview: "Gaya Ji is the ultimate sacred ground for ancestral salvation. Performing Falguni Hiranya Shraddham and Vishnupad Pind Daan (64+ Pindam) ensures absolute liberation for parental and ancestral lineages.",
     rituals: LOCATION_RITUALS_MAP.gaya
   }
 };
@@ -82,7 +93,6 @@ const PackageDetail = () => {
     `नमस्ते काशी वाध्यार जी, मैं ${pkg.title} (${pkg.tagline}) बुक करना चाहता/चाहती हूँ। कृपया उपलब्धता और विवरण साझा करें।`
   );
 
-  // Helper to match location rituals dynamically for each day
   const getDayRituals = (step) => {
     if (step.rituals && step.rituals.length > 0) return step.rituals;
     const placeLower = (step.place || "").toLowerCase();
@@ -92,7 +102,6 @@ const PackageDetail = () => {
     return null;
   };
 
-  // Match main Kshetra shloka header based on package content
   const firstDayPlace = (base.itinerary?.[0]?.place || "").toLowerCase();
   const matchedKshetraKey = Object.keys(KSHETRA_SPIRITUAL_DATA).find(k => slug.includes(k) || firstDayPlace.includes(k)) || "kashi";
   const kshetraHeader = KSHETRA_SPIRITUAL_DATA[matchedKshetraKey];
@@ -185,7 +194,7 @@ const PackageDetail = () => {
                         {dayRituals && dayRituals.length > 0 && (
                           <div className="mt-4 pt-4 border-t border-amber-500/10">
                             <p className="text-xs font-bold uppercase tracking-wider text-amber-300 mb-2.5 flex items-center gap-1.5">
-                              <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Key Rituals & Ceremonies Scheduled:
+                              <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Sacred Vedic Rituals Scheduled:
                             </p>
                             <ul className="grid gap-2 sm:grid-cols-2">
                               {dayRituals.map((r, rIdx) => (
