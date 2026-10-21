@@ -15,7 +15,7 @@ const INCLUDES_EN = [
   "Darshan assistance at temples"
 ];
 
-// 🌟 Detailed Rituals based on Client Note & Audio Update for Each Kshetra
+// 🌟 Client Text Note Based Detailed Rituals for Each Kshetra
 const LOCATION_RITUALS_MAP = {
   prayag: [
     "1. Anugna",
@@ -44,6 +44,14 @@ const LOCATION_RITUALS_MAP = {
     "12. Chakra Teertha & Manikarnika Snanam",
     "13. Kshetra Shraddham"
   ],
+  kashi_day5: [
+    "1. Ganga Pujai",
+    "2. Dampati Pujai",
+    "3. Dasha Daanam",
+    "4. Pancha Daanam",
+    "5. Samaradhanai",
+    "6. Ashirwadam"
+  ],
   gaya: [
     "1. Mahasankalpam",
     "2. Falguni Theertha Snanam",
@@ -53,7 +61,7 @@ const LOCATION_RITUALS_MAP = {
   ]
 };
 
-// 🌟 Pancha Maha Teertha Shraddham for Kashi (As requested)
+// 🌟 Pancha Maha Teertha Shraddham Rituals for Kashi
 const PANCHA_MAHA_TEERTHA_RITUALS = [
   "1. Assi Ganga",
   "2. Rudra Sarovar Dashashwamedh",
@@ -66,17 +74,17 @@ const PANCHA_MAHA_TEERTHA_RITUALS = [
 const KSHETRA_SPIRITUAL_DATA = {
   prayag: {
     shloka: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥",
-    overview: "Prayag is revered as the king of all pilgrimage centers ('Tirth Raj'). Bathing at the Triveni Sangam confluence of Ganga, Yamuna, and Saraswati along with Veni Daanam and Kshetra Shraddham purifies generations and grants supreme spiritual peace.",
+    overview: "Prayag is revered as the king of all pilgrimage centers ('Tirth Raj'). Bathing at Triveni Sangam with Veni Daanam, Saikatalinga Pujai, and Kshetra Shraddham purifies lineages.",
     rituals: LOCATION_RITUALS_MAP.prayag
   },
   kashi: {
     shloka: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥",
-    overview: "Kashi is the eternal city of Lord Shiva where true liberation (Moksha) is attained. Performing Vaishnava Shrardham, Go Daanam, and Manikarnika Snanam here under expert Vedic guidance cleanses all karmic debts. (Includes Pancha Maha Teertha Shraddham across Assi, Dashashwamedh, Varuna, Pancha Ganga, and Manikarnika).",
+    overview: "Kashi is the eternal city of Lord Shiva where Moksha is attained. Includes Anugna, Vaishnava Srardham, Manikarnika Snanam, Pancha Maha Teertha Shraddham, and Day 5 Ganga/Dampati Pujai.",
     rituals: LOCATION_RITUALS_MAP.kashi
   },
   gaya: {
     shloka: "॥ न गयासदृशं तीर्थं पितॄणां तारणं क्वचित्। पिण्डदानेन विधिना यान्ति ते परमां गतिम् ॥",
-    overview: "Gaya Ji is the ultimate sacred ground for ancestral salvation. Performing Falguni Hiranya Shraddham and Vishnupad Pind Daan (64+ Pindam) ensures absolute liberation for parental and ancestral lineages.",
+    overview: "Gaya Ji is the supreme sacred ground for ancestral salvation. Performing Falguni Hiranya Shraddham and Vishnupad Pind Daan (64+ Pindam) ensures liberation for all ancestors.",
     rituals: LOCATION_RITUALS_MAP.gaya
   }
 };
@@ -102,12 +110,18 @@ const PackageDetail = () => {
     `नमस्ते काशी वाध्यार जी, मैं ${pkg.title} (${pkg.tagline}) बुक करना चाहता/चाहती हूँ। कृपया उपलब्धता और विवरण साझा करें।`
   );
 
-  const getDayRituals = (step) => {
+  const getDayRituals = (step, index) => {
     if (step.rituals && step.rituals.length > 0) return step.rituals;
     const placeLower = (step.place || "").toLowerCase();
+    
     if (placeLower.includes("prayag")) return LOCATION_RITUALS_MAP.prayag;
-    if (placeLower.includes("kashi")) return LOCATION_RITUALS_MAP.kashi;
     if (placeLower.includes("gaya")) return LOCATION_RITUALS_MAP.gaya;
+    if (placeLower.includes("kashi") || placeLower.includes("varanasi")) {
+      if (index === 4) {
+        return LOCATION_RITUALS_MAP.kashi_day5;
+      }
+      return LOCATION_RITUALS_MAP.kashi;
+    }
     return null;
   };
 
@@ -184,8 +198,9 @@ const PackageDetail = () => {
             <h2 className="font-display text-3xl font-bold text-amber-100">{t("itinerary_h")}</h2>
             <div className="mt-8 space-y-0">
               {pkg.itinerary.map((step, i) => {
-                const dayRituals = getDayRituals(step);
-                const isKashiStep = (step.place || "").toLowerCase().includes("kashi");
+                const dayRituals = getDayRituals(step, i);
+                const placeLower = (step.place || "").toLowerCase();
+                const isKashiDay = placeLower.includes("kashi") || placeLower.includes("varanasi");
 
                 return (
                   <Reveal key={i} delay={i * 0.04}>
@@ -218,11 +233,11 @@ const PackageDetail = () => {
                           </div>
                         )}
 
-                        {/* 🌟 Pancha Maha Teertha Shraddham specifically for Kashi days */}
-                        {isKashiStep && (
+                        {/* 🌟 Pancha Maha Teertha Shraddham for Kashi Main Ritual Days */}
+                        {isKashiDay && i !== 4 && (
                           <div className="mt-4 pt-4 border-t border-amber-500/10">
                             <p className="text-xs font-bold uppercase tracking-wider text-amber-300 mb-2.5 flex items-center gap-1.5">
-                              <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Pancha Maha Teertha Shraddham:
+                              <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Pancha Maha Teertha Shraddham (5 Sacred Ghats):
                             </p>
                             <ul className="grid gap-2 sm:grid-cols-2">
                               {PANCHA_MAHA_TEERTHA_RITUALS.map((pmt, pmtIdx) => (

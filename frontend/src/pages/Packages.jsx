@@ -14,19 +14,19 @@ const MOKSHA_CIRCUIT_DATA = [
     slug: "kashi",
     img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
     en: {
-      title: "KASHI",
-      tagline: "MOKSHA PURI • PANCHA MAHA TEERTHA SRARDHAM",
-      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ The eternal city of Lord Shiva, Kashi is the ultimate destination for Anugna, Vaishnava Srardham, Gou Daanam, Manikarnika Snanam, and Pancha Maha Teertha Shraddham (Assi Ganga, Rudra Sarovar Dashashwamedh, Varuna Ganga, Pancha Ganga, Manikarnika) under expert Vedic guidance."
+      title: "KASHI / VARANASI",
+      tagline: "MOKSHA PURI • PANCHA MAHA TEERTHA & DAY 5 PUJAI",
+      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ The eternal city of Lord Shiva for Anugna, Vaishnava Srardham, Go Daanam, Manikarnika Snanam, Pancha Maha Teertha Shraddham (Assi, Dashashwamedh, Varuna, Pancha Ganga, Manikarnika) and Day 5 Ganga Pujai, Dampati Pujai, Dasha/Pancha Daanam, Samaradhanai & Ashirwadam."
     },
     ta: {
-      title: "காசி (KASHI)",
-      tagline: "மோட்ச புரி • பஞ்ச மகா தீர்த்த சிரார்த்தம்",
-      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ காசி மாநகரில் அனுக்ஞை, வைஷ்ணவ சிரார்த்தம், கோ தானம், மணிகர்ணிகா தீர்த்த ஸ்நானம் மற்றும் பஞ்ச மகா தீர்த்த சிரார்த்தம் (அசி கங்கா, ருத்ர சரோவர் தசாசுவமேத், வருண கங்கா, பஞ்ச கங்கா, மணிகர்ணிகா) ஆகியவை வைதீக முறையில் செய்யப்படுகின்றன."
+      title: "காசி / வாரணாசி (KASHI)",
+      tagline: "மோட்ச புரி • பஞ்ச மகா தீர்த்தம் & 5-ஆம் நாள் பூஜை",
+      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ காசி மாநகரில் அனுக்ஞை, வைஷ்ணவ சிரார்த்தம், கோ தானம், பஞ்ச மகா தீர்த்த சிரார்த்தம் மற்றும் 5-ஆம் நாள் கங்கா பூஜை, தம்பதி பூஜை, தச தானம், பஞ்ச தானம், சமாராதனை, ஆசிர்வாதம் ஆகியவை வைதீக முறையில் செய்யப்படுகின்றன."
     },
     hi: {
-      title: "काशी (KASHI)",
-      tagline: "मोक्ष पुरी • पंच महा तीर्थ श्राद्ध",
-      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ काशी में अनुज्ञा, वैष्णव श्राद्ध, गो दान, मणिकर्णिका स्नान और पंच महा तीर्थ श्राद्ध (अस्सी गंगा, रुद्र सरोवर दशाश्वमेध, वरुण गंगा, पंच गंगा, मणिकर्णिका) वैदिक विधि से संपन्न करें।"
+      title: "काशी / वाराणसी (KASHI)",
+      tagline: "मोक्ष पुरी • पंच महा तीर्थ एवं 5वें दिन की पूजा",
+      desc: "॥ अविमुक्तं तु तत्क्षेत्रं काशीति परिकीर्तितम्। यत्र देहत्यजं प्राप्य जीवः कैवल्यमश्नुते॥ काशी में अनुज्ञा, वैष्णव श्राद्ध, गो दान, मणिकर्णिका स्नान, पंच महा तीर्थ श्राद्ध तथा 5वें दिन गंगा पूजा, दंपत्ति पूजा, दश दान, पंच दान, समाराधना एवं आशीर्वाद वैदिक विधि से संपन्न करें।"
     }
   },
   {
@@ -34,18 +34,18 @@ const MOKSHA_CIRCUIT_DATA = [
     img: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=800&q=80",
     en: {
       title: "PRAYAGRAJ",
-      tagline: "TRIVENI SANGAM • VENI DAANAM",
-      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ Perform Veni Daanam, Saikatalinga Pujai, Triveni Snanam, Vapanam (Hair Offering), and collect sacred water for Ramanathar Abhishekam."
+      tagline: "TRIVENI SANGAM • VENI DAANAM & VAPANAM",
+      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ Perform Veni Daanam, Saikatalinga Pujai, Vapanam (Hair Offering), Triveni Snanam, Kshetra Shraddham, Pinda Pradanam, Tarpanam, Brahma Yagnam, Sachaila Vastra Visarjanam and collect sacred water for Ramanathar Abhishekam."
     },
     ta: {
       title: "பிரயாக்ராஜ் (PRAYAGRAJ)",
-      tagline: "திரிவேணி சங்கமம் • வேணி தானம்",
-      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ திரிவேணி சங்கமத்தில் வேணி தானம், மணல் பூஜை, வபனம் (முடி காணிக்கை), திரிவேணி ஸ்நானம் மற்றும் ராமேஸ்வர அபிஷேகத்திற்காக நீர் சேகரித்தல்."
+      tagline: "திரிவேணி சங்கமம் • வேணி தானம் & வபனம்",
+      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ திரிவேணி சங்கமத்தில் வேணி தானம், மணல் பூஜை, வபனம் (முடி காணிக்கை), திரிவேணி ஸ்நானம், க்ஷேத்திர சிரார்த்தம், பிண்ட பிரதானம், சச்சைல வஸ்திர விசர்ஜனம் மற்றும் ராமேஸ்வர அபிஷேகத்திற்கு நீர் சேகரித்தல்."
     },
     hi: {
       title: "प्रयागराज (PRAYAGRAJ)",
-      tagline: "त्रिवेणी संगम • वेणी दान",
-      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ त्रिवेणी संगम पर वेणी दान, बालू पूजा, वपन (केश दान), त्रिवेणी स्नान और रामेश्वरम अभिषेक हेतु जल संकलन करें।"
+      tagline: "त्रिवेणी संगम • वेणी दान एवं वपन",
+      desc: "॥ त्रिषु लोकेषु यत् तीर्थं प्रयागः परिकीर्तितः। गङ्गा यमुना संगमात् पुण्यं वर्धयते सदा ॥ त्रिवेणी संगम पर वेणी दान, बालू पूजा, वपन (केश दान), त्रिवेणी स्नान, क्षेत्र श्राद्ध, पिंड प्रदान, सचैल वस्त्र विसर्जन और रामेश्वरम अभिषेक हेतु जल संकलन करें।"
     }
   },
   {
